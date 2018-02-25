@@ -42,5 +42,23 @@ public class ProductCategory implements Serializable {
 		this.id = id;
 	}
 
+	public String getCateName() {
+		return cateName;
+	}
+
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
+	}
+
+	public List<Product> getPro() {
+		return pro;
+	}
+
+	public void setPro(List<Product> pro) {
+		this.pro = pro;
+	}
+	
+	
+
 	
 }

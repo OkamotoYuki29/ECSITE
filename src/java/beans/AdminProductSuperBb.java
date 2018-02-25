@@ -26,28 +26,28 @@ public class AdminProductSuperBb implements Serializable {
 	  /* ***(商品情報) ************/
 		/* 商品名 */
 		@Column(nullable = false) @Size(min = 1, max = 30)
-		private String name;
+		protected String name;
 		/* 商品名かな */
 		@Column(nullable = false) @Size(min = 1, max = 50) @KanaPattern(charaType = "かな")
-		private String name_kana;
+		protected String name_kana;
 		/* 商品詳細 */
 		@Lob
-		private String text;
+		protected String text;
 		/* 価格 */
 		@Column(nullable = false)
-		private Integer price;
+		protected Integer price;
 		/* 商品カテゴリ */
-		private Map<String, Long> categories;
-		private Integer category;
+		protected Map<String, Long> categories;
+		protected Integer category;
 		/* 商品画像 */
-		private Part pic;
+		protected Part pic;
 		/* ピックアップ情報 */
-		private Map<String,AppKind> kinds;
-		private AppKind kind = AppKind.NONE;
+		protected Map<String,AppKind> kinds;
+		protected AppKind kind = AppKind.NONE;
 		
 	/* *****（データベース処理）*******************************/
 		@EJB
-		ProductDb productDb;		// 商品データベース
+		protected ProductDb productDb;		// 商品データベース
 	/* *****（ユーティリティのインジェクト）********************/
 		@Inject
 		protected transient Logger log;		// ロガー
