@@ -1,5 +1,5 @@
 package entity;
 
 public enum AppKind {
-	Recommend,Bargain,Premium
+	None,Recommend,Bargain,Premium
 }
