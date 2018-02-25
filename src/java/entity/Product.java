@@ -57,7 +57,7 @@ public class Product implements Serializable {
 	@ManyToOne
 	private ProductCategory category;
 	
-	/** 商品画像 小 */
+	/** 商品画像 */
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] pic;
@@ -65,6 +65,20 @@ public class Product implements Serializable {
 	/** ピックアップ情報 */
 	@Enumerated(EnumType.STRING)
 	private AppKind kind;
+	
+	/** コンストラクタ */
+	public Product(){
+	}
+
+	public Product(String name, String name_kana, String text, Integer price, ProductCategory category, byte[] pic, AppKind kind) {
+		this.name = name;
+		this.name_kana = name_kana;
+		this.text = text;
+		this.price = price;
+		this.category = category;
+		this.pic = pic;
+		this.kind = kind;
+	}
 	
 	
 	
