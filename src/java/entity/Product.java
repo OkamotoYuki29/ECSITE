@@ -60,12 +60,7 @@ public class Product implements Serializable {
 	/** 商品画像 小 */
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
-	private byte[] pic_S;
-	
-	/** 商品画像 大 */
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
-	private byte[] pic_L;
+	private byte[] pic;
 	
 	/** ピックアップ情報 */
 	@Enumerated(EnumType.STRING)
@@ -122,20 +117,12 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 
-	public byte[] getPic_S() {
-		return pic_S;
+	public byte[] getPic() {
+		return pic;
 	}
 
-	public void setPic_S(byte[] pic_S) {
-		this.pic_S = pic_S;
-	}
-
-	public byte[] getPic_L() {
-		return pic_L;
-	}
-
-	public void setPic_L(byte[] pic_L) {
-		this.pic_L = pic_L;
+	public void setPic(byte[] pic) {
+		this.pic = pic;
 	}
 
 	public AppKind getKind() {
