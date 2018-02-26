@@ -16,15 +16,12 @@ import util.Tracer;
 public class AdminProductBb extends AdminProductSuperBb implements Serializable{
 	/* ******（productRegist）**************************************/
 	public String registProduct(){
-		System.out.println("aaaaaaaaaaaaa");
 		create();
-		System.out.println("aaaaaaaaaaaaa");
 		name = name_kana = text = null;
 		price = null;
 		category = null;
 		pic = null;
 		kind = null;
-		System.out.println("aaaaaaaaaaaaa");
 		return "index";
 	}
 	

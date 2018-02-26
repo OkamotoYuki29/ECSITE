@@ -62,5 +62,9 @@ public class ProductManager {
 		productPage.setup((int)countResult, 5);
 	}
 
+	List<Product> getFromDb(Integer priceItem, AppKind kindItem, Long category) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
 
 }

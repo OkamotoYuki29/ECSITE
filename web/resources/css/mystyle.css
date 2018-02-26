@@ -14,3 +14,58 @@ h1 {
     font-size: 0.7em;	/* エラーメッセージ用 */		
 	color: red;
 }
+
+/* *****************************
+    content-productのためのCSS
+*********************************/
+#view{
+    height: 800px;
+}
+.sel {								/* リストとメニュー用 */
+    padding-left: 30px;
+    font-family: メイリオ ,Osaka;
+    font-size: 1.0em;
+}
+.menu1{
+    height: 50px;
+    border: solid 1px #999999;
+    margin-bottom: 20px;
+
+}
+.pagingButton{
+    padding-left:110px;
+}
+.r1 {/* ヘッダー以外の行 */
+    background-color: #dbe9f9;	/* 薄い青の背景色 */
+}
+.r2 {/* ヘッダー以外の行 */
+    background-color: #fde6e6;	/* 薄い青の背景色 */
+}
+.c1	{/* ２列目 */
+    width: 150px;				/* 横幅を100pxに */
+    padding: 10px;				/* 左端に10pxの余白 */
+    vertical-align: top;
+    text-align: center;
+}
+.c2	{/* １列目 */
+    /* 横幅を100pxに */
+    vertical-align: top;
+    padding: 10px;
+}
+
+.c3	{/* ３列目 */
+    width: 130px;				/* 横幅を300pxに */
+    padding: 10px;			/* 左端に10pxの余白 */
+    vertical-align: top;
+    text-align: center;
+}
+.product{
+    font-size: 1.2em;
+}
+.tx{
+    display: block;
+    padding-left: 50px;
+}
+.mgn{
+    margin-right:5px;
+}
