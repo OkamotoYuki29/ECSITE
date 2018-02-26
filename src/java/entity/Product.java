@@ -2,7 +2,7 @@ package entity;
 
 import annotation.KanaPattern;
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,8 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -35,13 +38,11 @@ public class Product implements Serializable {
 	private Long id;
 	
 	/** 商品名 */
-	@Column(nullable = false)
-	@Size(max = 30)
+	@Column(length = 30, nullable = false)
 	private String name;
 	
 	/** 商品名かな */
-	@Column(nullable = false)
-	@Size(max = 50)
+	@Column(length = 50, nullable = false)
 	@KanaPattern(charaType = "かな")
 	private String name_kana;
 	
@@ -66,7 +67,17 @@ public class Product implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private AppKind kind;
 	
-	/** コンストラクタ */
+	/** 更新日 */
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updated;
+	
+	/** 変更追加日時の自動設定 */
+	@PrePersist @PreUpdate
+	private void now(){
+		setUpdated(new Date());
+	}
+	
+	/* ****** コンストラクタ *************/
 	public Product(){
 	}
 
@@ -82,7 +93,7 @@ public class Product implements Serializable {
 	
 	
 	
-	/** getter setter */
+	/* ****** getter setter **************/
 	public Long getId() {
 		return id;
 	}
@@ -146,6 +157,16 @@ public class Product implements Serializable {
 	public void setKind(AppKind kind) {
 		this.kind = kind;
 	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+	
+	
 
 	@Override
 	public int hashCode() {
