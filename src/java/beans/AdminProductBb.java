@@ -5,7 +5,10 @@ import entity.Product;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
+import util.Tracer;
 
+@Interceptors(Tracer.class)
 @Named
 @RequestScoped
 public class AdminProductBb extends AdminProductSuperBb implements Serializable{
@@ -19,5 +22,10 @@ public class AdminProductBb extends AdminProductSuperBb implements Serializable{
 		Product product = new Product(null, null, null, Integer.SIZE, null, null, AppKind.NONE);
 		productDb.create(product);
 	}
+	
+	public String productBundleRegist(){
+		productBundle.init();
+		return null;
+	};
 	
 }

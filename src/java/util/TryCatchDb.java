@@ -17,7 +17,7 @@ public class TryCatchDb<T> extends SuperDb{
 	public	void add(T obj){		//新規登録
 		try{
 			create(obj);
-		}catch(Exception e){}
+		}catch(Exception e){ e.printStackTrace();}
 	}
 	public	void update(T obj){		//更新
 		try{

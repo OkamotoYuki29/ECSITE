@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -32,8 +33,15 @@ public class ProductCategory implements Serializable {
 	
 	/** 商品情報 */
 	@OneToMany(mappedBy="category", cascade = CascadeType.ALL)
-	private List<Product> pro;
-
+	private List<Product> pro = new ArrayList<>();
+	
+	/* ***** コンストラクタ *******/
+	public ProductCategory() {	
+	}
+	public ProductCategory(String cateName) {
+		this.cateName = cateName;
+	}
+	/* ***** getter,setter *******/
 	public Long getId() {
 		return id;
 	}
@@ -56,6 +64,13 @@ public class ProductCategory implements Serializable {
 
 	public void setPro(List<Product> pro) {
 		this.pro = pro;
+		
+		
+	}
+
+	@Override
+	public String toString() {
+		return "ProductCategory{" + "cateName=" + cateName + '}';
 	}
 	
 	

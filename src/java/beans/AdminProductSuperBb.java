@@ -51,6 +51,8 @@ public class AdminProductSuperBb implements Serializable {
 	/* *****（ユーティリティのインジェクト）********************/
 		@Inject
 		protected transient Logger log;		// ロガー
+		@EJB
+		protected InitProducts productBundle;		//商品情報一括登録
 	/* *****（初期化）******************************************/
 		@PostConstruct
 		public void init() {
@@ -158,5 +160,5 @@ public class AdminProductSuperBb implements Serializable {
 	public void setLog(Logger log) {
 		this.log = log;
 	}
-
+	
 }
