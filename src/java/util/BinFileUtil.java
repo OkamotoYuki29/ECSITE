@@ -1,11 +1,14 @@
 package util;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+import javax.servlet.http.Part;
 /**
  * バイナリファイルの入力と出力を行うクラスメソッド<br/>
  * @author 
@@ -49,6 +52,26 @@ public class BinFileUtil {
 		} catch (IOException ex) {
 			log.severe("◆"+ex.toString());
 		}
+	}
+	/**
+	 * 画像ファイルをサーバーのimagesディレクトリに保存するメソッド<br/>
+	 * 使用例：	uploadImage(pic);<br/>
+	 * 
+	 * @param pic xhtmlより選択されたPart型のデータ
+	 * 
+	 * @return url String型の画像ファイルのURL
+	 */
+	public static String uploadImage(Part pic) {
+		try{
+			InputStream in = pic.getInputStream();					// ストリームを得る
+			String filepath = getRealPath("resources/images");		// 保存するディレクトリのパス
+			String filename = pic.getSubmittedFileName();			// ファイル名を得る
+			Files.copy(in, new File(filepath, filename).toPath());	//ファイルとして保管
+			String url = "resources/images" + filename;
+			return url;
+		} catch(IOException ex){
+			log.severe("◆"+ex.toString());
+		} return null;
 	}
 	/**
 	 * I/Oで使用する絶対パスを求める
