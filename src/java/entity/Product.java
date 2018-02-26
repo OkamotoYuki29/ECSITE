@@ -43,7 +43,7 @@ public class Product implements Serializable {
 	
 	/** 商品名かな */
 	@Column(length = 50, nullable = false)
-	@KanaPattern(charaType = "かな")
+//	@KanaPattern(charaType = "かな")
 	private String name_kana;
 	
 	/** 商品詳細 */

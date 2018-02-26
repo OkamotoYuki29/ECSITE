@@ -25,7 +25,7 @@ public class AdminProductBb extends AdminProductSuperBb implements Serializable{
 	
 	public String productBundleRegist(){
 		productBundle.init();
-		return null;
+		return "index";
 	};
 	
 }

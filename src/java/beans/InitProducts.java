@@ -61,6 +61,7 @@ public class InitProducts {
         "/resources/images/Product11.jpg", "/resources/images/Product12.jpg", "/resources/images/Product13.jpg", "/resources/images/Product14.jpg", "/resources/images/Product15.jpg", "/resources/images/Product16.jpg", "/resources/images/Product17.jpg", "/resources/images/Product18.jpg"
 	};
 
+	
     public void init() {
 		List<ProductCategory> nonRepeList = removeRepe(categories);
 		

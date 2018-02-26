@@ -48,7 +48,9 @@
 				</h:panelGrid>
 				<h:commandButton action="#{adminProductBb.registProduct()}" value="登録"/>
 			</h:form>
-			<h:commandButton action="#{adminProductBb.productBundleRegist()}" value="一括登録"/>
+			<h:form>
+				<h:commandButton action="#{adminProductBb.productBundleRegist()}" value="一括登録"/>
+			</h:form>
 		</ui:composition>
     </h:body>
 </html>

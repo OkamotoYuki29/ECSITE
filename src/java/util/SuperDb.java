@@ -2,13 +2,15 @@
 package util;
 
 import java.util.List;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
+@Interceptors(Tracer.class)
 public abstract class SuperDb<T> {
 	protected Class<T> entityClass;
 
+	
 	@PersistenceContext
 	private EntityManager em;
 	

@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Inject;
-import javax.persistence.Column;
 import javax.persistence.Lob;
 import javax.servlet.http.Part;
 import javax.validation.constraints.Size;
