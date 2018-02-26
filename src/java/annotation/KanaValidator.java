@@ -30,7 +30,7 @@ public class KanaValidator implements ConstraintValidator<KanaPattern, String>{
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
 		if(value == null) return false;
-		boolean hiraganaCheck = value.matches("^[\\\\u3040-\\\\u309Fー]+$");
+		boolean hiraganaCheck = value.matches("^[ぁ-ん]+$");
 		boolean katakanaCheck = value.matches("^[ァ-ヶー]+$");
 			
 		if(charaType == "かな") return hiraganaCheck;
