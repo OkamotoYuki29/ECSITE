@@ -1,5 +1,5 @@
 package beans;
-import annotation.KanaPattern;
+import db.ProductCategoryDb;
 import db.ProductDb;
 import entity.*;
 import java.io.Serializable;
@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.persistence.Lob;
 import javax.servlet.http.Part;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 /*
  * ・フィールド変数とアクセサメソッドを持つ
@@ -27,13 +28,12 @@ public class AdminProductSuperBb implements Serializable {
 		@Size(min = 1, max = 30)
 		protected String name;
 		/* 商品名かな */
-		@Size(min = 1, max = 50) @KanaPattern(charaType = "かな")
+		@Size(min = 1, max = 50) @Pattern(regexp = "^[ぁ-ん]+$")
 		protected String name_kana;
 		/* 商品詳細 */
 		@Lob
 		protected String text;
 		/* 価格 */
-		
 		protected Integer price;
 		/* 商品カテゴリ */
 		protected Map<String, Long> categories;
@@ -47,19 +47,21 @@ public class AdminProductSuperBb implements Serializable {
 	/* *****（データベース処理）*******************************/
 		@EJB
 		protected ProductDb productDb;		// 商品データベース
+		@EJB
+		protected ProductCategoryDb productCateDb;		// 商品カテゴリデータベース
 	/* *****（ユーティリティのインジェクト）********************/
 		@Inject
 		protected transient Logger log;		// ロガー
 		@EJB
-		protected InitProducts productBundle;		//商品情報一括登録
+		protected InitProducts productBundle;		// 商品情報一括登録
 	/* *****（初期化）******************************************/
 		@PostConstruct
 		public void init() {
-			categories = new LinkedHashMap<>();		//カテゴリ選択肢
-			List<Product> productList = productDb.getAll();
-			for(Product product : productList){
-				String key = product.getCategory().getCateName();
-				Long value = product.getCategory().getId();
+			categories = new LinkedHashMap<>();		// カテゴリ選択肢
+			List<ProductCategory> list = productCateDb.getAll();
+			for(ProductCategory cate : list){
+				String key = cate.getCateName();
+				Long value = cate.getId();
 				categories.put(key, value);
 			}
 
