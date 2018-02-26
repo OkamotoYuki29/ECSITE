@@ -1,35 +1,54 @@
 package entity;
 
-import annotation.KanaPattern;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 /**
  *
  * @author 岡本　侑貴
  */
 
+/** 名前付きクエリ */
+@NamedQueries ({
+	@NamedQuery(name=Product.Qall,			query="select c from Product c ORDER BY c.id"),
+	@NamedQuery(name=Product.QallASC,		query="select c from Product c ORDER BY c.price"),
+	@NamedQuery(name=Product.QallDESC,		query="select c from Product c ORDER BY c.price DESC"),
+	@NamedQuery(name=Product.Count_Qall,		query="select COUNT(c) from Product c"),
+	
+	@NamedQuery(name=Product.QKind,			query="select c from Product c where c.kind=:valueOfKind ORDER BY c.id"),
+	@NamedQuery(name=Product.QkindASC,		query="select c from Product c where c.kind=:valueOfKind ORDER BY c.price"),
+	@NamedQuery(name=Product.QkindDESC,		query="select c from Product c where c.kind=:valueOfKind ORDER BY c.price DESC"),
+	@NamedQuery(name=Product.Count_QKind,	query="select COUNT(c) from Product c where c.kind=:valueOfKind"),
+		
+	@NamedQuery(name=Product.QCate,			query="select c from Product c where c.category_id=:valueOfCate ORDER BY c.id"),
+	@NamedQuery(name=Product.QCateASC,		query="select c from Product c where c.category_id=:valueOfCate ORDER BY c.price"),
+	@NamedQuery(name=Product.QCateDESC,		query="select c from Product c where c.category_id=:valueOfCate ORDER BY c.price DESC"),
+	@NamedQuery(name=Product.Count_QCate,	query="select COUNT(c) from Product c where c.category_id=:valueOfCate")
+})
+
+
 /** 商品エンティティ */
 @Entity
 @Table(name="FIT_PRODUCT")
 public class Product implements Serializable {
+	
+	/** 名前付きクエリ */
+	public static final String Qall			= "Qall";
+	public static final String QallASC		= "QallASC";
+	public static final String QallDESC		= "QallDESC";
+	public static final String QKind		= "QKind";
+	public static final String QkindASC		= "QkindASC";
+	public static final String QkindDESC	= "QkindDESC";
+	public static final String QCate		= "QCate";
+	public static final String QCateASC		= "QCateASC";
+	public static final String QCateDESC	= "QCateDESC";
+	
+	public static final String Count_Qall	= "Count_Qall";
+	public static final String Count_QKind	= "Count_QKind";
+	public static final String Count_QCate	= "Count_QCate";
+	
 	private static final long serialVersionUID = 1L;
 	
 	/** ID */
