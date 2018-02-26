@@ -25,20 +25,20 @@ public class AdminProductSuperBb implements Serializable {
 
 	  /* ***(商品情報) ************/
 		/* 商品名 */
-		@Column(nullable = false) @Size(min = 1, max = 30)
+		@Size(min = 1, max = 30)
 		protected String name;
 		/* 商品名かな */
-		@Column(nullable = false) @Size(min = 1, max = 50) @KanaPattern(charaType = "かな")
+		@Size(min = 1, max = 50) @KanaPattern(charaType = "かな")
 		protected String name_kana;
 		/* 商品詳細 */
 		@Lob
 		protected String text;
 		/* 価格 */
-		@Column(nullable = false)
+		
 		protected Integer price;
 		/* 商品カテゴリ */
 		protected Map<String, Long> categories;
-		protected Integer category;
+		protected Long category;
 		/* 商品画像 */
 		protected Part pic;
 		/* ピックアップ情報 */
@@ -63,7 +63,7 @@ public class AdminProductSuperBb implements Serializable {
 			}
 
 			kinds = new LinkedHashMap<>();			// 種類選択肢
-			kinds.put("全商品", AppKind.NONE);
+			kinds.put("なし", AppKind.NONE);
 			kinds.put("おすすめ品", AppKind.RECOMMEND);
 			kinds.put("超安値", AppKind.BARGAIN);
 			kinds.put("プレミアム商品", AppKind.PREMIUM);
@@ -111,11 +111,11 @@ public class AdminProductSuperBb implements Serializable {
 		this.categories = categories;
 	}
 
-	public Integer getCategory() {
+	public Long getCategory() {
 		return category;
 	}
 
-	public void setCategory(Integer category) {
+	public void setCategory(Long category) {
 		this.category = category;
 	}
 
