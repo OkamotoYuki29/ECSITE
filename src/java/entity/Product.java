@@ -22,10 +22,10 @@ import javax.persistence.*;
 	@NamedQuery(name=Product.QkindDESC,		query="select c from Product c where c.kind=:valueOfKind ORDER BY c.price DESC"),
 	@NamedQuery(name=Product.Count_QKind,	query="select COUNT(c) from Product c where c.kind=:valueOfKind"),
 		
-	@NamedQuery(name=Product.QCate,			query="select c from Product c where c.category=:valueOfCate ORDER BY c.id"),
-	@NamedQuery(name=Product.QCateASC,		query="select c from Product c where c.category=:valueOfCate ORDER BY c.price"),
-	@NamedQuery(name=Product.QCateDESC,		query="select c from Product c where c.category=:valueOfCate ORDER BY c.price DESC"),
-	@NamedQuery(name=Product.Count_QCate,	query="select COUNT(c) from Product c where c.category=:valueOfCate")
+	@NamedQuery(name=Product.QCate,			query="select c from Product c where c.category.id=:valueOfCate ORDER BY c.id"),
+	@NamedQuery(name=Product.QCateASC,		query="select c from Product c where c.category.id=:valueOfCate ORDER BY c.price"),
+	@NamedQuery(name=Product.QCateDESC,		query="select c from Product c where c.category.id=:valueOfCate ORDER BY c.price DESC"),
+	@NamedQuery(name=Product.Count_QCate,	query="select COUNT(c) from Product c where c.category.id=:valueOfCate")
 })
 
 
