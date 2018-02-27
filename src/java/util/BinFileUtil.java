@@ -73,6 +73,16 @@ public class BinFileUtil {
 			log.severe("◆"+ex.toString());
 		} return null;
 	}
+	public static byte[] partToBinary(Part file){
+		byte[] data = new byte[(int) file.getSize()];   // byte配列を作成
+		try {
+			InputStream in = file.getInputStream();     // ストリームからbyte配列
+			in.read(data);                              // に、入力する
+		} catch (IOException ex) {
+		  log.severe("◆"+ex.toString());
+		}
+		return data;
+	}
 	/**
 	 * I/Oで使用する絶対パスを求める
 	 * @param path	アプリケーションルートのリソースからの相対パス（/resources/～）

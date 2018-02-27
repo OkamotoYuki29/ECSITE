@@ -26,10 +26,9 @@ public class AdminProductBb extends AdminProductSuperBb implements Serializable{
 	}
 	
 	public void create(){
-		//Part→Stringパス
-		String fpath = BinFileUtil.uploadImage(pic);
-		//Stringパス→byte[]
-		byte[] binaryData = BinFileUtil.getBinary(fpath);
+		//Part→byte[]
+		byte[] binaryData = BinFileUtil.partToBinary(pic);
+		
 		ProductCategory productCategory = (ProductCategory) productCateDb.find(category);
 		Product product = new Product(name, name_kana, text, price, productCategory, binaryData, kind);
 		productCategory.getPro().add(product);
