@@ -10,7 +10,7 @@ import javax.interceptor.Interceptors;
 import util.BinFileUtil;
 import util.Tracer;
 
-@Interceptors(Tracer.class)
+
 @Named
 @RequestScoped
 public class AdminProductBb extends AdminProductSuperBb implements Serializable{

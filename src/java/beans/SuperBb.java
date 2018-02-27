@@ -4,6 +4,7 @@ import entity.*;
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -37,6 +38,8 @@ public class SuperBb implements Serializable {
 	/* *****（データベース処理）*******************************/
 	@EJB
 	ProductDb productDb;		// 商品データベース
+	@EJB
+	protected ProductCategoryDb productCateDb;		// 商品カテゴリデータベース
 	/* *****（ユーティリティのインジェクト）********************/
 	@EJB
 	ProductManager pm;					// 商品マネージャー
@@ -58,6 +61,14 @@ public class SuperBb implements Serializable {
 		kindItems.put("おすすめ品", AppKind.RECOMMEND);
 		kindItems.put("超安値", AppKind.BARGAIN);
 		kindItems.put("プレミアム商品", AppKind.PREMIUM);
+		
+		categories = new LinkedHashMap<>();		// カテゴリ選択肢
+		List<ProductCategory> list = productCateDb.getAll();
+		for(ProductCategory cate : list){
+			String key = cate.getCateName();
+			Long value = cate.getId();
+			categories.put(key, value);
+		}
 
 		productPage.setup(productDb.dataCount(), 5);// ページングマネージャー
 	}
@@ -184,4 +195,20 @@ public class SuperBb implements Serializable {
 		this.productPage = productPage;
 	}
 
+	public Map<String, Long> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Map<String, Long> categories) {
+		this.categories = categories;
+	}
+
+	public Long getCategory() {
+		return category;
+	}
+
+	public void setCategory(Long category) {
+		this.category = category;
+	}
+	
 }

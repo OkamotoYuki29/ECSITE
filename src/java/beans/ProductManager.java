@@ -4,10 +4,13 @@ import entity.AppKind;
 import entity.Product;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import util.Pagenation;
+import util.Tracer;
+
 
 @Stateless
 public class ProductManager {
@@ -24,7 +27,7 @@ public class ProductManager {
 			}else{
 				query = em.createNamedQuery(Product.QallDESC, Product.class);
 			}
-		}else if(category==0){
+		}else if(category==null){
 			if(priceItem==1){
 				query = em.createNamedQuery(Product.QKind, Product.class);
 			}else if(priceItem==2){
