@@ -27,7 +27,7 @@
 					</h:commandLink>		    
 				</div>
 				<div class="menu1">
-					<h:panelGrid columns="7" style="padding: 10px;">
+					<h:panelGrid columns="8" style="padding: 10px;">
 						並び替え
 						<h:selectOneMenu value="#{bb.priceItem}" styleClass="sel">
 							<f:selectItems value="#{bb.priceItems}" />
@@ -40,20 +40,21 @@
 									listener="#{bb.counterClear()}"/>
 						</h:selectOneRadio>
 						<h:commandLink action="#{bb.productPage.top()}">
-							<f:ajax render="productTbl"/>
+							<f:ajax render="productTbl page"/>
 							<h:graphicImage library="images" name="top.png" 
 											styleClass="pagingButton"/>
 						</h:commandLink>
 						<h:commandLink action="#{bb.productPage.back()}">
-							<f:ajax render="productTbl"/>
+							<f:ajax render="productTbl page"/>
 							<h:graphicImage library="images" name="left.png"/>
 						</h:commandLink>
+						<h:outputText value="#{bb.productPage.page}" id="page"/>
 						<h:commandLink action="#{bb.productPage.next()}">
-							<f:ajax render="productTbl"/>
+							<f:ajax render="productTbl page"/>
 							<h:graphicImage library="images" name="right.png"/>
 						</h:commandLink>
 						<h:commandLink action="#{bb.productPage.bottom()}">
-							<f:ajax render="productTbl"/>
+							<f:ajax render="productTbl page"/>
 							<h:graphicImage library="images" name="bottom.png"/>
 						</h:commandLink>
 					</h:panelGrid>
@@ -62,7 +63,7 @@
 							 headerClass="hd1" rowClasses="r1,r2" columnClasses="c1,c2,c3">
 					<h:column >
 						<h:commandLink action="#{bb.detail(item)}">
-							<p:graphicImage value="#{bb.pic}" >
+							<p:graphicImage value="#{bb.pic}" class = "pic" >
 								<f:param name="productId" value="#{item.id}"/>
 							</p:graphicImage>
 						</h:commandLink>
