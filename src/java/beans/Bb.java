@@ -36,6 +36,6 @@ public class Bb extends SuperBb implements Serializable {
 		return null;
 	}
 	public String detail(Product item){
-		return null;
+		return "/details.xhtml?faces-redirect=true ";
 	}
 }

@@ -22,7 +22,7 @@ public class AdminProductBb extends AdminProductSuperBb implements Serializable{
 		category = null;
 		pic = null;
 		kind = null;
-		return "index";
+		return "/index.xhtml?faces-redirect=true ";
 	}
 	
 	public void create(){
@@ -37,7 +37,7 @@ public class AdminProductBb extends AdminProductSuperBb implements Serializable{
 	
 	public String productBundleRegist(){
 		productBundle.init();
-		return "index";
+		return "/index.xhtml?faces-redirect=true ";
 	};
 	
 }
