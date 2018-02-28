@@ -13,11 +13,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
-public class User implements Serializable {
+public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private String id;
 	@NotNull @Column(length = 16) @Pattern(regexp = "^\\w+$")
 	private String passwd;
 	@NotNull
@@ -28,9 +28,9 @@ public class User implements Serializable {
 	private AppGroup group;
 	
 /* ****** コンストラクタ *************/
-	public User() {
+	public Customer() {
 	}
-	public User(Long id, String passwd, String name, String mail, AppGroup group) {
+	public Customer(String id, String passwd, String name, String mail, AppGroup group) {
 		this.id = id;
 		this.passwd = passwd;
 		this.name = name;
@@ -38,10 +38,10 @@ public class User implements Serializable {
 		this.group = group;
 	}
 /* ****** ゲッター、セッター *************/	
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getPasswd() {
@@ -82,7 +82,7 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		final User other = (User) obj;
+		final Customer other = (Customer) obj;
 		if (!Objects.equals(this.id, other.id)) {
 			return false;
 		}
@@ -90,7 +90,7 @@ public class User implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "User{" + "id=" + id + ", passwd=" + passwd + ", name=" + name + ", mail=" + mail + ", group=" + group + '}';
+		return "Customer{" + "id=" + id + ", passwd=" + passwd + ", name=" + name + ", mail=" + mail + ", group=" + group + '}';
 	}
 	
 	

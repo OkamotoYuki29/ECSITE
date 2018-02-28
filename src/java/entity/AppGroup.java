@@ -13,17 +13,17 @@ public class AppGroup implements Serializable {
 	@EmbeddedId
 	private GroupKey groupKey;
 	@OneToOne(mappedBy = "group")
-	private User user;
+	private Customer customer;
 	
 /* ****** コンストラクタ *************/
 	public AppGroup() {
 	}
-	public AppGroup(Long groupId, User user){
-		this.groupKey = new GroupKey(groupId, user.getId());
+	public AppGroup(String groupId, Customer customer){
+		this.groupKey = new GroupKey(groupId, customer.getId());
 	}
-	public AppGroup(GroupKey groupKey, User user) {
+	public AppGroup(GroupKey groupKey, Customer customer) {
 		this.groupKey = groupKey;
-		this.user = user;
+		this.customer = customer;
 	}
 /* ****** ゲッター、セッター *************/
 	public GroupKey getGroupKey() {
@@ -32,18 +32,18 @@ public class AppGroup implements Serializable {
 	public void setGroupKey(GroupKey groupKey) {
 		this.groupKey = groupKey;
 	}
-	public User getUser() {
-		return user;
+	public Customer getCustomer() {
+		return customer;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 /* ****** その他 *************/	
 	@Override
 	public int hashCode() {
 		int hash = 5;
 		hash = 13 * hash + Objects.hashCode(this.groupKey);
-		hash = 13 * hash + Objects.hashCode(this.user);
+		hash = 13 * hash + Objects.hashCode(this.customer);
 		return hash;
 	}
 	@Override
@@ -58,14 +58,14 @@ public class AppGroup implements Serializable {
 		if (!Objects.equals(this.groupKey, other.groupKey)) {
 			return false;
 		}
-		if (!Objects.equals(this.user, other.user)) {
+		if (!Objects.equals(this.customer, other.customer)) {
 			return false;
 		}
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "AppGroup{" + "groupKey=" + groupKey + ", user=" + user + '}';
+		return "AppGroup{" + "groupKey=" + groupKey + ", customer=" + customer + '}';
 	}
 	
 	

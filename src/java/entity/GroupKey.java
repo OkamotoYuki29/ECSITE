@@ -9,38 +9,35 @@ import javax.persistence.Embeddable;
 public class GroupKey implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Long groupId;
-	private Long userId;
+	private String groupId;
+	private String customerId;
 	
 /* ****** コンストラクタ *************/
 	public GroupKey() {
 	}
-	public GroupKey(Long groupId, Long userId) {
+	public GroupKey(String groupId, String customerId) {
 		this.groupId = groupId;
-		this.userId = userId;
+		this.customerId = customerId;
 	}
 /* ****** ゲッター、セッター *************/	
-	public Long getGroupId() {
+	public String getGroupId() {
 		return groupId;
 	}
-
-	public void setGroupId(Long groupId) {
+	public void setGroupId(String groupId) {
 		this.groupId = groupId;
 	}
-
-	public Long getUserId() {
-		return userId;
+	public String getCustomerId() {
+		return customerId;
 	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 /* ****** その他*************/
 	@Override
 	public int hashCode() {
 		int hash = 5;
 		hash = 43 * hash + Objects.hashCode(this.groupId);
-		hash = 43 * hash + Objects.hashCode(this.userId);
+		hash = 43 * hash + Objects.hashCode(this.customerId);
 		return hash;
 	}
 	@Override
@@ -55,14 +52,14 @@ public class GroupKey implements Serializable {
 		if (!Objects.equals(this.groupId, other.groupId)) {
 			return false;
 		}
-		if (!Objects.equals(this.userId, other.userId)) {
+		if (!Objects.equals(this.customerId, other.customerId)) {
 			return false;
 		}
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "GroupKey{" + "groupId=" + groupId + ", userId=" + userId + '}';
+		return "GroupKey{" + "groupId=" + groupId + ", customerId=" + customerId + '}';
 	}
 	
 }
