@@ -10,7 +10,25 @@
     </h:head>
     <h:body>
 		<ui:composition>
-			
+			<h:form>
+				<div id="picDetail">
+					<p:graphicImage value="#{bb.pic}">
+						<f:param name="productId" value="#{bb.sel.id}"/>
+					</p:graphicImage>
+				</div>
+				<div id="exp">
+					<div id="bklink">
+						<h:link outcome="index">
+							<h:graphicImage library="images" name="back.jpg"/>
+						</h:link>
+					</div>
+					<h:outputText value="#{bb.sel.name}" styleClass="name"/>
+					<h:outputText value="#{bb.sel.price}" styleClass="price">
+						<f:convertNumber type="currency" locale="ja_JP"/>
+					</h:outputText>
+					<h:outputText value="#{bb.sel.text}" styleClass="text"/>
+				</div>
+			</h:form>
 		</ui:composition>
     </h:body>
 </html>

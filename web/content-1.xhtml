@@ -18,7 +18,7 @@
 					</h:commandLink>
 				</div>
 				<div class="menu1">
-					<h:panelGrid columns="4" style="padding: 10px;">
+					<h:panelGrid columns="9" style="padding: 10px;">
 						並び替え
 						<h:selectOneMenu value="#{bb.priceItem}" styleClass="sel">
 							<f:selectItems value="#{bb.priceItems}" />
@@ -38,6 +38,24 @@
 									listener="#{bb.counterClear()}"/>
 						</h:selectOneRadio>
 						-->
+											<h:commandLink action="#{bb.productPage.top()}">
+						<f:ajax render="productTbl page"/>
+						<h:graphicImage library="images" name="top.png" 
+										styleClass="pagingButton"/>
+						</h:commandLink>
+						<h:commandLink action="#{bb.productPage.back()}">
+							<f:ajax render="productTbl page"/>
+							<h:graphicImage library="images" name="left.png"/>
+						</h:commandLink>
+						<h:outputText value="#{bb.productPage.page}" id="page"/>
+						<h:commandLink action="#{bb.productPage.next()}">
+							<f:ajax render="productTbl page"/>
+							<h:graphicImage library="images" name="right.png"/>
+						</h:commandLink>
+						<h:commandLink action="#{bb.productPage.bottom()}">
+							<f:ajax render="productTbl page"/>
+							<h:graphicImage library="images" name="bottom.png"/>
+						</h:commandLink>
 					</h:panelGrid>
 				</div>
 				<h:dataTable id="productTbl" value="#{bb.fromDb}" var="item" 
@@ -61,26 +79,6 @@
 						</h:outputText>
 					</h:column>
 				</h:dataTable>
-				<h:panelGrid columns="5" style="float: right;">
-					<h:commandLink action="#{bb.productPage.top()}">
-						<f:ajax render="productTbl page"/>
-						<h:graphicImage library="images" name="top.png" 
-										styleClass="pagingButton"/>
-					</h:commandLink>
-					<h:commandLink action="#{bb.productPage.back()}">
-						<f:ajax render="productTbl page"/>
-						<h:graphicImage library="images" name="left.png"/>
-					</h:commandLink>
-					<h:outputText value="#{bb.productPage.page}" id="page"/>
-					<h:commandLink action="#{bb.productPage.next()}">
-						<f:ajax render="productTbl page"/>
-						<h:graphicImage library="images" name="right.png"/>
-					</h:commandLink>
-					<h:commandLink action="#{bb.productPage.bottom()}">
-						<f:ajax render="productTbl page"/>
-						<h:graphicImage library="images" name="bottom.png"/>
-					</h:commandLink>
-				</h:panelGrid>
 			</h:form>
 		</ui:composition>
     </h:body>

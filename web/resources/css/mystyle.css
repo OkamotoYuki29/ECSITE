@@ -16,7 +16,7 @@ h1 {
 }
 
 /* *****************************
-    content-productのためのCSS
+    /content-1のためのCSS
 *********************************/
 #view{
     height: 800px;
@@ -72,4 +72,28 @@ h1 {
 
 .pic{
 	width:20em;
+}
+/* *****************************
+    /content-2のためのCSS
+*********************************/
+#picDetail {
+    float: left;
+    margin-right: 20px;
+}
+#bklink{
+    text-align: right;
+}
+.name{
+    display: box;
+    font-size: 1.5em;
+}
+.price{
+    display: block;
+    padding-top:10px;
+    font-size: 1.5em;
+    color:  #ff0066;
+}
+.text{
+    display:  block;
+    padding-top: 15px;
 }
