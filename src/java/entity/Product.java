@@ -96,10 +96,9 @@ public class Product implements Serializable {
 		setUpdated(new Date());
 	}
 	
-	/* ****** コンストラクタ *************/
+/* ****** コンストラクタ *************/
 	public Product(){
 	}
-
 	public Product(String name, String name_kana, String text, Integer price, ProductCategory category, byte[] pic, AppKind kind) {
 		this.name = name;
 		this.name_kana = name_kana;
@@ -109,91 +108,68 @@ public class Product implements Serializable {
 		this.pic = pic;
 		this.kind = kind;
 	}
-	
-	
-	
-	/* ****** getter setter **************/
+/* ****** ゲッター、セッター **************/
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getName_kana() {
 		return name_kana;
 	}
-
 	public void setName_kana(String name_kana) {
 		this.name_kana = name_kana;
 	}
-
 	public String getText() {
 		return text;
 	}
-
 	public void setText(String text) {
 		this.text = text;
 	}
-
 	public Integer getPrice() {
 		return price;
 	}
-
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-
 	public ProductCategory getCategory() {
 		return category;
 	}
-
 	public void setCategory(ProductCategory category) {
 		this.category = category;
 	}
-
 	public byte[] getPic() {
 		return pic;
 	}
-
 	public void setPic(byte[] pic) {
 		this.pic = pic;
 	}
-
 	public AppKind getKind() {
 		return kind;
 	}
-
 	public void setKind(AppKind kind) {
 		this.kind = kind;
 	}
-
 	public Date getUpdated() {
 		return updated;
 	}
-
 	public void setUpdated(Date updated) {
 		this.updated = updated;
 	}
-	
-	
-
+/* ****** その他 *************/
 	@Override
 	public int hashCode() {
 		int hash = 3;
 		hash = 67 * hash + Objects.hashCode(this.id);
 		return hash;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -208,7 +184,6 @@ public class Product implements Serializable {
 		}
 		return true;
 	}
-
 	@Override
 	public String toString() {
 		return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", kind=" + kind + '}';
