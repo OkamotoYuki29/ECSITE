@@ -54,7 +54,7 @@ public class ProductManager {
 		TypedQuery<Long> count_query = null;
 		if(kindItem==AppKind.NONE ){
 			count_query	=	em.createNamedQuery(Product.Count_Qall, Long.class);
-		}else if(category == 0){
+		}else if(category == null){
 			count_query	=	em.createNamedQuery(Product.Count_QKind, Long.class);
 			count_query.setParameter("valueOfKind", kindItem);
 		}else{
