@@ -1,13 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
         <ui:composition template="./../templates/template01.xhtml">
             <ui:define name="title">
-                ユーザー登録
+				<c:if test="#{customerBb.displayable}">
+					ユーザー情報・変更
+				</c:if>
+				<c:if test="#{!customerBb.displayable}">
+					ユーザー登録
+				</c:if>
             </ui:define>
             <ui:define name="content">
                 <ui:include src="content-1.xhtml"/>

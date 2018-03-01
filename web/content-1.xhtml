@@ -16,7 +16,7 @@
 					<h:commandLink action="#{bb.dispCart()}">
 						<h:graphicImage library="images" name="cart03.jpg" styleClass="mgn"/>
 					</h:commandLink>
-					<h:commandLink action="#{customerBb.goto_1()}">
+					<h:commandLink action="#{customerBb.goto1_forRegist()}">
 						<h:graphicImage library="images" name="regist01.jpg" styleClass="mgn"/>
 					</h:commandLink>
 				</div>
@@ -25,12 +25,12 @@
 						並び替え
 						<h:selectOneMenu value="#{bb.priceItem}" styleClass="sel">
 							<f:selectItems value="#{bb.priceItems}" />
-							<f:ajax event="change" render="productTbl" 
+							<f:ajax event="change" render="productTbl"
 									listener="#{bb.counterClear()}"/>
-						</h:selectOneMenu>			
+						</h:selectOneMenu>
 						<h:selectOneRadio value="#{bb.kindItem}" styleClass="sel">
 							<f:selectItems value="#{bb.kindItems}" />
-							<f:ajax event="change" render="productTbl" 
+							<f:ajax event="change" render="productTbl"
 									listener="#{bb.counterClear()}"/>
 						</h:selectOneRadio>
 						<!-- categoriesを取得できていない -->
@@ -43,7 +43,7 @@
 						-->
 											<h:commandLink action="#{bb.productPage.top()}">
 						<f:ajax render="productTbl page"/>
-						<h:graphicImage library="images" name="top.png" 
+						<h:graphicImage library="images" name="top.png"
 										styleClass="pagingButton"/>
 						</h:commandLink>
 						<h:commandLink action="#{bb.productPage.back()}">
@@ -61,7 +61,7 @@
 						</h:commandLink>
 					</h:panelGrid>
 				</div>
-				<h:dataTable id="productTbl" value="#{bb.fromDb}" var="item" 
+				<h:dataTable id="productTbl" value="#{bb.fromDb}" var="item"
 							 headerClass="hd1" rowClasses="r1,r2" columnClasses="c1,c2,c3">
 					<h:column >
 						<h:commandLink action="#{bb.detail(item)}">

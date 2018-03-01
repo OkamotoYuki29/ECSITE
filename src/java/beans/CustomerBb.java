@@ -11,8 +11,22 @@ import javax.inject.Named;
 public class CustomerBb extends CustomerSuperBb implements Serializable{
 	@Inject
 	Conversation conv;
-	public String goto_1(){
+
+	/* *****(ユーザー登録)******************/
+	/* content-1 */
+	public String goto1_forRegist(){
 		if(conv.isTransient()) conv.begin();
+		editable = true;
+		return "/customer/info1.xhtml?faces-redirect=true";
+	}
+
+
+	/* *****(ユーザー情報表示・変更)******************/
+	/* content-1 */
+	public String goto1_forDispEdit(){
+		if(conv.isTransient()) conv.begin();
+		editable = false;
+		displayable = true;
 		return "/customer/info1.xhtml?faces-redirect=true";
 	}
 }

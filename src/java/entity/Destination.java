@@ -29,14 +29,14 @@ public class Destination implements Serializable {
 	private String address;
 	/** 連絡先番号 */
 	@Column(length = 11, nullable = false)
-	private Long number;
+	private String number;
 	/** 顧客エンティティ */
 	@ManyToOne
 	private Customer customer;
 /* ****** コンストラクタ *************/
 	public Destination() {
 	}
-	public Destination(Long id, String addressee, Integer postal, String address, Long number, Customer customer) {
+	public Destination(Long id, String addressee, Integer postal, String address, String number, Customer customer) {
 		this.id = id;
 		this.addressee = addressee;
 		this.postal = postal;
@@ -69,10 +69,10 @@ public class Destination implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Long getNumber() {
+	public String getNumber() {
 		return number;
 	}
-	public void setNumber(Long number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 	public Customer getCustomer() {
