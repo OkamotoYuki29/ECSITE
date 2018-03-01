@@ -1,18 +1,15 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -36,12 +33,12 @@ public class Customer implements Serializable {
 	private AppGroup group;
 	/** 宛先情報 */
 	@OneToMany(mappedBy = "customer", cascade = {CascadeType.ALL})
-	private Destination destination;
+	private List<Destination> destination;
 	
 /* ****** コンストラクタ *************/
 	public Customer() {
 	}
-	public Customer(String id, String passwd, String name, String mail, AppGroup group, Destination destination) {
+	public Customer(String id, String passwd, String name, String mail, AppGroup group, List<Destination> destination) {
 		this.id = id;
 		this.passwd = passwd;
 		this.name = name;
@@ -80,10 +77,10 @@ public class Customer implements Serializable {
 	public void setGroup(AppGroup group) {
 		this.group = group;
 	}
-	public Destination getDestination() {
+	public List<Destination> getDestination() {
 		return destination;
 	}
-	public void setDestination(Destination destination) {
+	public void setDestination(List<Destination> destination) {
 		this.destination = destination;
 	}
 /* ****** その他 *************/	
