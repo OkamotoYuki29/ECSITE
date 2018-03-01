@@ -3,11 +3,13 @@ package entity;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -15,26 +17,35 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
+	/** ID */
 	@Id
 	private String id;
-	@NotNull @Column(length = 16) @Pattern(regexp = "^\\w+$")
+	/** PW */
+	@Column(length = 16, nullable = false) @Pattern(regexp = "^\\w+$")
 	private String passwd;
-	@NotNull
+	/** 氏名 */
+	@Column(nullable = false)
 	private String name;
-	@Pattern(regexp = "^[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+(\\.[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+)*+(.*)@[a-zA-Z0-9][a-zA-Z0-9\\-]*(\\.[a-zA-Z0-9\\-]+)+$")
+	/** メールアドレス */
+	@Column(nullable = false) @Pattern(regexp = "^[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+(\\.[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+)*+(.*)@[a-zA-Z0-9][a-zA-Z0-9\\-]*(\\.[a-zA-Z0-9\\-]+)+$")
 	private String mail;
+	/** ユーザーグループ */
 	@OneToOne(cascade = {CascadeType.ALL})
 	private AppGroup group;
+	/** 宛先情報 */
+	@OneToMany(mappedBy = "customer", cascade = {CascadeType.ALL})
+	private Destination destination;
 	
 /* ****** コンストラクタ *************/
 	public Customer() {
 	}
-	public Customer(String id, String passwd, String name, String mail, AppGroup group) {
+	public Customer(String id, String passwd, String name, String mail, AppGroup group, Destination destination) {
 		this.id = id;
 		this.passwd = passwd;
 		this.name = name;
 		this.mail = mail;
 		this.group = group;
+		this.destination = destination;
 	}
 /* ****** ゲッター、セッター *************/	
 	public String getId() {
@@ -67,6 +78,12 @@ public class Customer implements Serializable {
 	public void setGroup(AppGroup group) {
 		this.group = group;
 	}
+	public Destination getDestination() {
+		return destination;
+	}
+	public void setDestination(Destination destination) {
+		this.destination = destination;
+	}
 /* ****** その他 *************/	
 	@Override
 	public int hashCode() {
@@ -89,7 +106,7 @@ public class Customer implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Customer{" + "id=" + id + ", passwd=" + passwd + ", name=" + name + ", mail=" + mail + ", group=" + group + '}';
+		return "Customer{" + "id=" + id + ", passwd=" + passwd + ", name=" + name + ", mail=" + mail + ", group=" + group + ", destination=" + destination + '}';
 	}
 	
 	
