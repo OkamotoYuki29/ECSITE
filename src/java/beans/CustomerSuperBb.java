@@ -2,6 +2,7 @@ package beans;
 
 import db.CustomerDb;
 import entity.AppGroupId;
+import java.io.Serializable;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -9,7 +10,7 @@ import javax.inject.Inject;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class CustomerSuperBb {
+public class CustomerSuperBb implements Serializable{
 	
 	/* *****（変数）********************************************/
 	
@@ -29,7 +30,21 @@ public class CustomerSuperBb {
 		/* グループID */
 		protected AppGroupId groupId;
 		
-		/* *****（データベース処理）*******************************/
+	  /* ***(宛先情報) ************/
+		/* 宛名 */
+		@Size(min = 1)
+		protected String addressee;
+		/* 郵便番号 */
+		@Size(min = 7, max = 7)
+		protected Integer postal;
+		/* 住所 */
+		@Size(min = 1)
+		protected String address;
+		/* 連絡先番号 */
+		@Size(min = 10, max = 11)
+		protected Long number;
+		
+	/* *****（データベース処理）*******************************/
 		@EJB
 		protected CustomerDb customerDb;		// 顧客データベース
 	/* *****（ユーティリティのインジェクト）********************/

@@ -21,20 +21,20 @@ public class Destination implements Serializable {
 	private String addressee;
 	/** 郵便番号 */
 	@Column(length = 7, nullable = false)
-	private String postal;
+	private Integer postal;
 	/** 住所 */
 	@Column(nullable = false)
 	private String address;
 	/** 連絡先番号 */
 	@Column(length = 11, nullable = false)
-	private String number;
+	private Long number;
 	/** 顧客エンティティ */
 	@ManyToOne
 	private Customer customer;
 /* ****** コンストラクタ *************/
 	public Destination() {
 	}
-	public Destination(Long id, String addressee, String postal, String address, String number, Customer customer) {
+	public Destination(Long id, String addressee, Integer postal, String address, Long number, Customer customer) {
 		this.id = id;
 		this.addressee = addressee;
 		this.postal = postal;
@@ -55,10 +55,10 @@ public class Destination implements Serializable {
 	public void setAddressee(String addressee) {
 		this.addressee = addressee;
 	}
-	public String getPostal() {
+	public Integer getPostal() {
 		return postal;
 	}
-	public void setPostal(String postal) {
+	public void setPostal(Integer postal) {
 		this.postal = postal;
 	}
 	public String getAddress() {
@@ -67,10 +67,10 @@ public class Destination implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getNumber() {
+	public Long getNumber() {
 		return number;
 	}
-	public void setNumber(String number) {
+	public void setNumber(Long number) {
 		this.number = number;
 	}
 	public Customer getCustomer() {
