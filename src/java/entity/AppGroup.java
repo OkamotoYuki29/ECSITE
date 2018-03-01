@@ -5,8 +5,10 @@ import java.util.Objects;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="FIT_APPGROUP")
 public class AppGroup implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
