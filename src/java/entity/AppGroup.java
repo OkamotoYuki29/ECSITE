@@ -18,8 +18,9 @@ public class AppGroup implements Serializable {
 /* ****** コンストラクタ *************/
 	public AppGroup() {
 	}
-	public AppGroup(String groupId, Customer customer){
+	public AppGroup(AppGroupId groupId, Customer customer){
 		this.groupKey = new GroupKey(groupId, customer.getId());
+		this.customer = customer;
 	}
 	public AppGroup(GroupKey groupKey, Customer customer) {
 		this.groupKey = groupKey;

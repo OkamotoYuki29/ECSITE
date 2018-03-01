@@ -16,7 +16,6 @@ import javax.validation.constraints.Pattern;
 public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 	@NotNull @Column(length = 16) @Pattern(regexp = "^\\w+$")
 	private String passwd;

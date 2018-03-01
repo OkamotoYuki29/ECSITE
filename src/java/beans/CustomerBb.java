@@ -1,5 +1,10 @@
 package beans;
 
-public class CustomerBb {
+import javax.enterprise.context.ConversationScoped;
+import javax.inject.Named;
+
+@Named
+@ConversationScoped
+public class CustomerBb extends CustomerSuperBb{
 	
 }

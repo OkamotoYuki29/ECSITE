@@ -9,21 +9,21 @@ import javax.persistence.Embeddable;
 public class GroupKey implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String groupId;
+	private AppGroupId groupId;
 	private String customerId;
 	
 /* ****** コンストラクタ *************/
 	public GroupKey() {
 	}
-	public GroupKey(String groupId, String customerId) {
+	public GroupKey(AppGroupId groupId, String customerId) {
 		this.groupId = groupId;
 		this.customerId = customerId;
 	}
 /* ****** ゲッター、セッター *************/	
-	public String getGroupId() {
+	public AppGroupId getGroupId() {
 		return groupId;
 	}
-	public void setGroupId(String groupId) {
+	public void setGroupId(AppGroupId groupId) {
 		this.groupId = groupId;
 	}
 	public String getCustomerId() {
