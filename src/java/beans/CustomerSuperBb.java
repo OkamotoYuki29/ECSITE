@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import net.tkxtools.MailSender;
 
 public class CustomerSuperBb implements Serializable{
 
@@ -64,6 +65,10 @@ public class CustomerSuperBb implements Serializable{
 	/* *****（ユーティリティのインジェクト）********************/
 		@Inject
 		protected transient Logger log;		// ロガー
+		@EJB
+		protected MailSender sender;		//電子メールユーティリティ
+		@Inject
+		protected MakeText text;
 	/* *****（初期化）******************************************/
 		@PostConstruct
 		public void init(){
@@ -162,5 +167,17 @@ public class CustomerSuperBb implements Serializable{
 		}
 		public void setAddresseeaKana(String addresseeaKana) {
 			this.addresseeaKana = addresseeaKana;
+		}
+		public MailSender getSender() {
+			return sender;
+		}
+		public void setSender(MailSender sender) {
+			this.sender = sender;
+		}
+		public MakeText getText() {
+			return text;
+		}
+		public void setText(MakeText text) {
+			this.text = text;
 		}
 }
