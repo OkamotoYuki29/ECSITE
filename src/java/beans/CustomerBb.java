@@ -21,8 +21,9 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 	}
 	/* content-2 */
 	public String goto2(){
-
-		//メール処理
+		// 認証用のワンタイムトークン付のURL作成
+		String url = null;
+		sender.send(mail, "本登録のご案内", text.getRegistText(name, url));
 		return "/customer/info2.xhtml?faces-redirect=true";
 	}
 
