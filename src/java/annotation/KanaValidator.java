@@ -5,21 +5,18 @@
  */
 package annotation;
 
-import javax.interceptor.Interceptors;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import util.Tracer;
 
 /**
- * !!! 使用見合わせ !!!
- * バグが発生のためいったん使用見合わせ
+ * 
  * @author 岡本　侑貴
  */
 public class KanaValidator implements ConstraintValidator<KanaPattern, String>{
 
 	// 属性値("かな" or "カナ")
 	private String charaType;
-	
+
 	// 初期化
 	@Override
 	public void initialize(KanaPattern pattern) {
@@ -32,10 +29,10 @@ public class KanaValidator implements ConstraintValidator<KanaPattern, String>{
 		if(value == null) return false;
 		boolean hiraganaCheck = value.matches("^[ぁ-ん]+$");
 		boolean katakanaCheck = value.matches("^[ァ-ヶー]+$");
-			
-		if(charaType == "かな") return hiraganaCheck;
-		if(charaType == "カナ") return katakanaCheck;
+
+		if(charaType.equals("かな")) return hiraganaCheck;
+		if(charaType.equals("カナ")) return katakanaCheck;
 		return false;
 	}
-	
+
 }

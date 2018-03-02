@@ -1,5 +1,6 @@
 package entity;
 
+import annotation.KanaPattern;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -16,12 +17,12 @@ import javax.persistence.*;
 	@NamedQuery(name=Product.QallASC,		query="select c from Product c ORDER BY c.price"),
 	@NamedQuery(name=Product.QallDESC,		query="select c from Product c ORDER BY c.price DESC"),
 	@NamedQuery(name=Product.Count_Qall,		query="select COUNT(c) from Product c"),
-	
+
 	@NamedQuery(name=Product.QKind,			query="select c from Product c where c.kind=:valueOfKind ORDER BY c.id"),
 	@NamedQuery(name=Product.QkindASC,		query="select c from Product c where c.kind=:valueOfKind ORDER BY c.price"),
 	@NamedQuery(name=Product.QkindDESC,		query="select c from Product c where c.kind=:valueOfKind ORDER BY c.price DESC"),
 	@NamedQuery(name=Product.Count_QKind,	query="select COUNT(c) from Product c where c.kind=:valueOfKind"),
-		
+
 	@NamedQuery(name=Product.QCate,			query="select c from Product c where c.category.id=:valueOfCate ORDER BY c.id"),
 	@NamedQuery(name=Product.QCateASC,		query="select c from Product c where c.category.id=:valueOfCate ORDER BY c.price"),
 	@NamedQuery(name=Product.QCateDESC,		query="select c from Product c where c.category.id=:valueOfCate ORDER BY c.price DESC"),
@@ -33,7 +34,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="FIT_PRODUCT")
 public class Product implements Serializable {
-	
+
 	/** 名前付きクエリ */
 	public static final String Qall			= "Qall";
 	public static final String QallASC		= "QallASC";
@@ -44,58 +45,58 @@ public class Product implements Serializable {
 	public static final String QCate		= "QCate";
 	public static final String QCateASC		= "QCateASC";
 	public static final String QCateDESC	= "QCateDESC";
-	
+
 	public static final String Count_Qall	= "Count_Qall";
 	public static final String Count_QKind	= "Count_QKind";
 	public static final String Count_QCate	= "Count_QCate";
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	/** ID */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	/** 商品名 */
 	@Column(length = 30, nullable = false)
 	private String name;
-	
+
 	/** 商品名かな */
-	@Column(length = 50, nullable = false)
+	@Column(length = 50, nullable = false) @KanaPattern
 //	@KanaPattern(charaType = "かな")
 	private String name_kana;
-	
+
 	/** 商品詳細 */
 	@Lob
 	private String text;
-	
+
 	/** 価格 */
 	@Column(nullable = false)
 	private Integer price;
-	
+
 	/** 商品カテゴリ */
 	@ManyToOne
 	private ProductCategory category;
-	
+
 	/** 商品画像 */
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] pic;
-	
+
 	/** ピックアップ情報 */
 	@Enumerated(EnumType.STRING)
 	private AppKind kind;
-	
+
 	/** 更新日 */
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updated;
-	
+
 	/** 変更追加日時の自動設定 */
 	@PrePersist @PreUpdate
 	private void now(){
 		setUpdated(new Date());
 	}
-	
+
 /* ****** コンストラクタ *************/
 	public Product(){
 	}
@@ -188,7 +189,7 @@ public class Product implements Serializable {
 	public String toString() {
 		return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", kind=" + kind + '}';
 	}
-	
-	
-	
+
+
+
 }

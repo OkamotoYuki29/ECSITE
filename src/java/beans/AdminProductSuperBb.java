@@ -1,4 +1,5 @@
 package beans;
+import annotation.KanaPattern;
 import db.ProductCategoryDb;
 import db.ProductDb;
 import entity.*;
@@ -28,7 +29,7 @@ public class AdminProductSuperBb implements Serializable {
 		@Size(min = 1, max = 30)
 		protected String name;
 		/* 商品名かな */
-		@Size(min = 1, max = 50) @Pattern(regexp = "^[ぁ-ん]+$")
+		@Size(min = 1, max = 50) @KanaPattern
 		protected String name_kana;
 		/* 商品詳細 */
 		@Lob
@@ -43,7 +44,7 @@ public class AdminProductSuperBb implements Serializable {
 		/* ピックアップ情報 */
 		protected Map<String,AppKind> kinds;
 		protected AppKind kind = AppKind.NONE;
-		
+
 	/* *****（データベース処理）*******************************/
 		@EJB
 		protected ProductDb productDb;		// 商品データベース
@@ -161,5 +162,5 @@ public class AdminProductSuperBb implements Serializable {
 	public void setLog(Logger log) {
 		this.log = log;
 	}
-	
+
 }

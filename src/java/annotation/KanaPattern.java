@@ -9,8 +9,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- * !!! 使用見合わせ !!!
- * バグが発生のためいったん使用見合わせ
+ * 
  * @KanaPatternバリデータを作成するインターフェイス
  * @author 岡本　侑貴
  */
