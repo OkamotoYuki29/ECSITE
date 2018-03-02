@@ -13,7 +13,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import net.tkxtools.MailSender;
-
+import util.Token;
 public class CustomerSuperBb implements Serializable{
 
 	/* *****（変数）********************************************/
@@ -33,6 +33,8 @@ public class CustomerSuperBb implements Serializable{
 		protected String mail;
 		/* グループID */
 		protected AppGroupId groupId;
+		/* token */
+		protected String token;
 
 	  /* ***(宛先情報) ************/
 		/* 宛名 */
@@ -69,10 +71,12 @@ public class CustomerSuperBb implements Serializable{
 		protected MailSender sender;		//電子メールユーティリティ
 		@Inject
 		protected MakeText text;
+		@Inject
+		protected Token tokenGenerator;
 	/* *****（初期化）******************************************/
 		@PostConstruct
 		public void init(){
-			groupId = AppGroupId.USER;		//ユーザー登録画面では実質的にfinal
+			groupId = AppGroupId.TEMPORARY_USER;		//仮ユーザー
 			/* 現在CUSTOMERテーブルが空のためコメントアウト
 			customerList = customerDb.getAll();
 			*/
@@ -179,5 +183,17 @@ public class CustomerSuperBb implements Serializable{
 		}
 		public void setText(MakeText text) {
 			this.text = text;
+		}
+		public String getToken() {
+			return token;
+		}
+		public void setToken(String token) {
+			this.token = token;
+		}
+		public Token getTokenGenerator() {
+			return tokenGenerator;
+		}
+		public void setTokenGenerator(Token tokenGenerator) {
+			this.tokenGenerator = tokenGenerator;
 		}
 }

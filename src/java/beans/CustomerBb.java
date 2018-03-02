@@ -17,12 +17,13 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 	public String goto1_forRegist(){
 		if(conv.isTransient()) conv.begin();
 		editable = true;
-		return "/customer/info1.xhtml?faces-redirect=true";
+		return "/customer/info1.xhtml?faces-redirect=true?";
 	}
 	/* content-2 */
 	public String goto2(){
 		// 認証用のワンタイムトークン付のURL作成
-		String url = null;
+		token = tokenGenerator.getToken();
+		String url = "http://localhost:8080/ecsite/faces/customer.content-3.xhtml?token=" + token;
 		sender.send(mail, "本登録のご案内", text.getRegistText(name, url));
 		return "/customer/info2.xhtml?faces-redirect=true";
 	}
