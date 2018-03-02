@@ -62,7 +62,7 @@ public class Product implements Serializable {
 	private String name;
 
 	/** 商品名かな */
-	@Column(length = 50, nullable = false) @KanaPattern
+	@Column(length = 50, nullable = false)
 //	@KanaPattern(charaType = "かな")
 	private String name_kana;
 
