@@ -13,7 +13,6 @@ import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.persistence.Lob;
 import javax.servlet.http.Part;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 /*
  * ・フィールド変数とアクセサメソッドを持つ

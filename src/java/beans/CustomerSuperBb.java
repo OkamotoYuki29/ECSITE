@@ -71,8 +71,8 @@ public class CustomerSuperBb implements Serializable{
 		protected MailSender sender;		//電子メールユーティリティ
 		@Inject
 		protected MakeText text;
-		@Inject
-		protected Token tokenGenerator;
+//		@Inject
+//		protected Token tokenGenerator;
 	/* *****（初期化）******************************************/
 		@PostConstruct
 		public void init(){
@@ -190,10 +190,10 @@ public class CustomerSuperBb implements Serializable{
 		public void setToken(String token) {
 			this.token = token;
 		}
-		public Token getTokenGenerator() {
-			return tokenGenerator;
-		}
-		public void setTokenGenerator(Token tokenGenerator) {
-			this.tokenGenerator = tokenGenerator;
-		}
+//		public Token getTokenGenerator() {
+//			return tokenGenerator;
+//		}
+//		public void setTokenGenerator(Token tokenGenerator) {
+//			this.tokenGenerator = tokenGenerator;
+//		}
 }
