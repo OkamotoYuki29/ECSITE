@@ -19,7 +19,12 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		editable = true;
 		return "/customer/info1.xhtml?faces-redirect=true";
 	}
+	/* content-2 */
+	public String goto2(){
 
+		//メール処理
+		return "/customer/info2.xhtml?faces-redirect=true";
+	}
 
 	/* *****(ユーザー情報表示・変更)******************/
 	/* content-1 */
@@ -28,5 +33,11 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		editable = false;
 		displayable = true;
 		return "/customer/info1.xhtml?faces-redirect=true";
+	}
+	/* end */
+	public String end_forDispEdit(){
+		conv.end();
+		// 変更DB処理
+		return null;
 	}
 }

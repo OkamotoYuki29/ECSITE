@@ -37,6 +37,8 @@ public class CustomerSuperBb implements Serializable{
 		/* 宛名 */
 		@Size(min = 1)
 		protected String addressee;
+		/* 宛名かな */
+		protected String addresseeaKana;
 		/* 郵便番号 */
 		@Digits(integer = 7, fraction = 0)
 		protected Integer postal;
@@ -154,5 +156,11 @@ public class CustomerSuperBb implements Serializable{
 		}
 		public void setDisplayable(boolean displayable) {
 			this.displayable = displayable;
+		}
+		public String getAddresseeaKana() {
+			return addresseeaKana;
+		}
+		public void setAddresseeaKana(String addresseeaKana) {
+			this.addresseeaKana = addresseeaKana;
 		}
 }
