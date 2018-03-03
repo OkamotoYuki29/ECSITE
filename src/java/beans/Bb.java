@@ -29,14 +29,16 @@ public class Bb extends SuperBb implements Serializable {
 			facesMessage("商品情報の初期化でエラーが発生しました");
 		}
 	}
-	
-	
-	/* ***** 未実装 *******/
-	public String dispCart(){
-		return null;
-	}
+	//商品詳細ページへ
 	public String detail(Product item){
 		sel = item;
 		return "details.xhtml?faces-redirect=true ";
 	}
+
+
+	/* ***** 未実装 *******/
+	public String dispCart(){
+		return null;
+	}
+
 }
