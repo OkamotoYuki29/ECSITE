@@ -29,6 +29,8 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		return "/customer/info2.xhtml?faces-redirect=true";
 	}
 	public String goto4(){
+		//Tokenチェック
+		
 		return "/customer/info4.xhtml?faces-redirect=true";
 	}
 
