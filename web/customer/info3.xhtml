@@ -5,9 +5,8 @@
 	  xmlns:f="http://xmlns.jcp.org/jsf/core">
 	<f:metadata>
 		<f:viewParam name="token" value="#{customerBb.token}"/>
-		<f:event type="preRenderView" listener="#{customerBb.goto4()}"/>
 	</f:metadata>
-    <body onload="setToken()">
+    <body>
 
         <ui:composition template="./../templates/template01.xhtml">
             <ui:define name="title">
@@ -17,11 +16,5 @@
                 <ui:include src="content-3.xhtml"/>
             </ui:define>
         </ui:composition>
-
-<!--		<script>
-			function setToken(){
-				document.getELementById('token').value =
-			}
-		</script>-->
     </body>
 </html>

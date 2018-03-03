@@ -9,9 +9,7 @@
     </h:head>
     <h:body>
 		<ui:composition>
-			<h:form id="form">
-				#{customerBb.token}
-				<h:inputHidden id="token" value="#{customerBb.token}" />
+			<h:form>
 				<h:commandLink action="#{customerBb.goto4()}" value="完了する"/>
 			</h:form>
 		</ui:composition>
