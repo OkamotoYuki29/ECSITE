@@ -22,21 +22,21 @@ import javax.persistence.Table;
 @Table(name = "FIT_PRODUCT_CATEGORY")
 public class ProductCategory implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	/** ID */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	/** 商品カテゴリ名 */
 	private String cateName;
-	
+
 	/** 商品情報 */
 	@OneToMany(mappedBy="category", cascade = CascadeType.ALL)
 	private List<Product> pro = new ArrayList<>();
-	
+
 	/* ***** コンストラクタ *******/
-	public ProductCategory() {	
+	public ProductCategory() {
 	}
 	public ProductCategory(String cateName) {
 		this.cateName = cateName;
@@ -64,16 +64,16 @@ public class ProductCategory implements Serializable {
 
 	public void setPro(List<Product> pro) {
 		this.pro = pro;
-		
-		
+
+
 	}
 
 	@Override
 	public String toString() {
 		return "ProductCategory{" + "cateName=" + cateName + '}';
 	}
-	
-	
 
-	
+
+
+
 }
