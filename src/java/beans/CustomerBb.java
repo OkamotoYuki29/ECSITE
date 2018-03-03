@@ -1,11 +1,11 @@
 package beans;
 
+import entity.TempCustomer;
 import java.io.Serializable;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.apache.commons.lang3.RandomStringUtils;
 import util.SHA256Encoder;
 import util.Token;
 
@@ -29,9 +29,11 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		/* パスワードを暗号化 */
 		String criptoPasswd = getEncodedPw(passwd);
 		/* DBへ登録 */
-
+		TempCustomer tempCustomer = new TempCustomer(id, criptoPasswd, name, mail, criptoToken);
+		tempCustomerDb.create(tempCustomer);
 		/* 本登録URL付mail送信 */
 		sendMail();
+
 		return "/customer/info2.xhtml?faces-redirect=true";
 	}
 	/**
