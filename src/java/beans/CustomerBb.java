@@ -25,14 +25,24 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		// 認証用のワンタイムトークン付のURL作成
 		token = Token.generateToken();
 		String url = "http://localhost:8080/ecsite/faces/customer/mailAttest.xhtml?token=" + token;
+		//仮登録ユーザーをDB登録
+		/**
+		 * 暗号化、DB処理など
+		 */
+		//メール送信
 		sender.send(mail, "本登録のご案内", text.getRegistText(name, url));
 		return "/customer/info2.xhtml?faces-redirect=true";
 	}
 	public String goto3(){
-		//Tokenチェック
-		
 		System.out.println("token:" + token);
+		//Tokenチェック
+		/**
+		 * Tokenが存在するかチェック
+		 */
 		//true
+		/**
+		 * 仮登録DBから削除して、本登録DBに登録
+		 */
 		return "/customer/info3.xhtml?faces-redirect=true";
 		//false
 		//return "認証エラーページ";

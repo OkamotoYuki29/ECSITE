@@ -1,6 +1,7 @@
 package beans;
 
 import db.CustomerDb;
+import db.TempCustomerDb;
 import entity.AppGroupId;
 import entity.Customer;
 import java.io.Serializable;
@@ -13,7 +14,6 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import net.tkxtools.MailSender;
-import util.Token;
 public class CustomerSuperBb implements Serializable{
 
 	/* *****（変数）********************************************/
@@ -64,6 +64,8 @@ public class CustomerSuperBb implements Serializable{
 	/* *****（データベース処理）*******************************/
 		@EJB
 		protected CustomerDb customerDb;		// 顧客データベース
+		@EJB
+		protected TempCustomerDb tempCustomerDb;	//仮登録顧客データベース
 	/* *****（ユーティリティのインジェクト）********************/
 		@Inject
 		protected transient Logger log;		// ロガー
@@ -188,4 +190,10 @@ public class CustomerSuperBb implements Serializable{
 		public void setToken(String token) {
 			this.token = token;
 		}
+		public TempCustomerDb getTempCustomerDb() {
+			return tempCustomerDb;
+		}
+		public void setTempCustomerDb(TempCustomerDb tempCustomerDb) {
+			this.tempCustomerDb = tempCustomerDb;
+	}
 }

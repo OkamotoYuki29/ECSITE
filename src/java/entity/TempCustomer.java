@@ -1,20 +1,20 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+/**
+ *
+ * @author 岡本　侑貴
+ */
 @Entity
-@Table(name="FIT_CUSTOMER")
-public class Customer implements Serializable {
+@Table(name="FIT_TEMP_CUSTOMER")
+public class TempCustomer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/** ID */
 	@Id
@@ -28,23 +28,18 @@ public class Customer implements Serializable {
 	/** メールアドレス */
 	@Column(nullable = false) @Pattern(regexp = "^[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+(\\.[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+)*+(.*)@[a-zA-Z0-9][a-zA-Z0-9\\-]*(\\.[a-zA-Z0-9\\-]+)+$")
 	private String mail;
-	/** ユーザーグループ */
-	@OneToOne(cascade = {CascadeType.ALL})
-	private AppGroup group;
-	/** 宛先情報 */
-	@OneToMany(mappedBy = "customer", cascade = {CascadeType.ALL})
-	private List<Destination> destination;
+	/* トークン */
+	private String token;
 
 /* ****** コンストラクタ *************/
-	public Customer() {
+	public TempCustomer() {
 	}
-	public Customer(String id, String passwd, String name, String mail, AppGroup group, List<Destination> destination) {
+	public TempCustomer(String id, String passwd, String name, String mail, String token) {
 		this.id = id;
 		this.passwd = passwd;
 		this.name = name;
 		this.mail = mail;
-		this.group = group;
-		this.destination = destination;
+		this.token = token;
 	}
 /* ****** ゲッター、セッター *************/
 	public String getId() {
@@ -71,22 +66,16 @@ public class Customer implements Serializable {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public AppGroup getGroup() {
-		return group;
+	public String getToken() {
+		return token;
 	}
-	public void setGroup(AppGroup group) {
-		this.group = group;
-	}
-	public List<Destination> getDestination() {
-		return destination;
-	}
-	public void setDestination(List<Destination> destination) {
-		this.destination = destination;
+	public void setToken(String token) {
+		this.token = token;
 	}
 /* ****** その他 *************/
 	@Override
 	public int hashCode() {
-		int hash = 5;
+		int hash = 7;
 		hash = 53 * hash + Objects.hashCode(this.id);
 		return hash;
 	}
@@ -98,7 +87,7 @@ public class Customer implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		final Customer other = (Customer) obj;
+		final TempCustomer other = (TempCustomer) obj;
 		if (!Objects.equals(this.id, other.id)) {
 			return false;
 		}
@@ -106,8 +95,6 @@ public class Customer implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Customer{" + "id=" + id + ", passwd=" + passwd + ", name=" + name + ", mail=" + mail + ", group=" + group + ", destination=" + destination + '}';
+		return "TemporaryCustomer{" + "id=" + id + ", passwd=" + passwd + ", name=" + name + ", mail=" + mail + ", token=" + token + '}';
 	}
-
-
 }
