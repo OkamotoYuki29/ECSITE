@@ -72,7 +72,9 @@ public class CustomerSuperBb implements Serializable{
 		@EJB
 		protected MailSender sender;		//電子メールユーティリティ
 		@Inject
-		protected MakeText text;
+		protected MakeText text;			//メール本文を作成する
+		@Inject
+		protected CriptoExecute cripto;		//トークンを暗号化する
 	/* *****（初期化）******************************************/
 		@PostConstruct
 		public void init(){
@@ -195,5 +197,11 @@ public class CustomerSuperBb implements Serializable{
 		}
 		public void setTempCustomerDb(TempCustomerDb tempCustomerDb) {
 			this.tempCustomerDb = tempCustomerDb;
-	}
+		}
+		public CriptoExecute getCripto() {
+			return cripto;
+		}
+		public void setCripto(CriptoExecute cripto) {
+			this.cripto = cripto;
+		}
 }

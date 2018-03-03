@@ -5,6 +5,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.apache.commons.lang3.RandomStringUtils;
 import util.Token;
 
 @Named
@@ -22,17 +23,28 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 	}
 	/* content-2 */
 	public String goto2(){
+		/**
+		 * mail送信
+		 */
 		// 認証用のワンタイムトークン付のURL作成
 		token = Token.generateToken();
 		String url = "http://localhost:8080/ecsite/faces/customer/mailAttest.xhtml?token=" + token;
-		//仮登録ユーザーをDB登録
+		sender.send(mail, "本登録のご案内", text.getRegistText(name, url));
 		/**
-		 * 暗号化、DB処理など
+		 * 仮ユーザー情報をDB登録
+		 */
+		//トークンを暗号化
+		String criptoToken = cripto.encrypt(id, mail, passwd);
+
+
+		/**
+		 * DB処理など
 		 */
 		//メール送信
-		sender.send(mail, "本登録のご案内", text.getRegistText(name, url));
+
 		return "/customer/info2.xhtml?faces-redirect=true";
 	}
+
 	public String goto3(){
 		System.out.println("token:" + token);
 		//Tokenチェック
