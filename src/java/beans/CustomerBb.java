@@ -1,5 +1,7 @@
 package beans;
 
+import entity.AppGroup;
+import entity.Customer;
 import entity.TempCustomer;
 import java.io.Serializable;
 import javax.enterprise.context.Conversation;
@@ -55,16 +57,30 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 	public String goto3(){
 		System.out.println("token:" + token);
 		//Tokenチェック
-		/**
-		 * Tokenが存在するかチェック
-		 */
-		//true
-		/**
-		 * 仮登録DBから削除して、本登録DBに登録
-		 */
+		TempCustomer temp = tokenChk();
+		//同じトークンがなかった場合
+		if(temp == null) return "/customer/error.xhtml?faces-redirect=true";
+		//本登録して、仮登録データを削除
+		
+		Customer customer = new Customer(temp.getId(), temp.getPasswd(), temp.getName(), temp.getName(), null, null);
 		return "/customer/info3.xhtml?faces-redirect=true";
-		//false
-		//return "認証エラーページ";
+	}
+	/**
+	 * TempCustomerテーブルのトークンを一つずつそれぞれのキー(id,mail)で復号し、<br/>
+	 * URL記載のトークンと同じの場合、そのTempCustomerを返すメソッド<br/>
+	 * @return トークンチェックの結果得られたTempCustomer
+	 */
+	private TempCustomer tokenChk(){
+		//仮ユーザーリストの取得
+		tempCustomerList = tempCustomerDb.getAll();
+		//トークンを復号
+		for(TempCustomer temp : tempCustomerList){
+			String decriptoToken = cripto.decript(temp.getId(), temp.getMail(), temp.getToken());
+			//トークンの整合性チェック
+			if(token.equals(decriptoToken)){
+				return temp;
+			}
+		} return null;
 	}
 /** ****(ユーザー情報表示・変更)***************************************/
 /* ******（content-1）**************************************/

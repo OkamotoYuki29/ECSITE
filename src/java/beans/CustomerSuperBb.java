@@ -4,6 +4,7 @@ import db.CustomerDb;
 import db.TempCustomerDb;
 import entity.AppGroupId;
 import entity.Customer;
+import entity.TempCustomer;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
@@ -35,6 +36,7 @@ public class CustomerSuperBb implements Serializable{
 		protected AppGroupId groupId;
 		/* token */
 		protected String token;
+		/* 暗号化パスワード */
 
 	  /* ***(宛先情報) ************/
 		/* 宛名 */
@@ -60,6 +62,8 @@ public class CustomerSuperBb implements Serializable{
 		protected boolean displayable;
 		/* 既存ユーザーリスト */
 		protected List<Customer> customerList;
+		/* 仮ユーザーリスト */
+		protected List<TempCustomer> tempCustomerList;
 
 	/* *****（データベース処理）*******************************/
 		@EJB
@@ -203,5 +207,11 @@ public class CustomerSuperBb implements Serializable{
 		}
 		public void setCripto(CriptoExecute cripto) {
 			this.cripto = cripto;
+		}
+		public List<TempCustomer> getTempCustomerList() {
+			return tempCustomerList;
+		}
+		public void setTempCustomerList(List<TempCustomer> tempCustomerList) {
+			this.tempCustomerList = tempCustomerList;
 		}
 }
