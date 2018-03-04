@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -36,7 +38,6 @@ public class CustomerSuperBb implements Serializable{
 		protected AppGroupId groupId;
 		/* token */
 		protected String token;
-		/* 暗号化パスワード */
 
 	  /* ***(宛先情報) ************/
 		/* 宛名 */
@@ -70,6 +71,8 @@ public class CustomerSuperBb implements Serializable{
 		protected CustomerDb customerDb;		// 顧客データベース
 		@EJB
 		protected TempCustomerDb tempCustomerDb;	//仮登録顧客データベース
+		@PersistenceContext
+		protected EntityManager	em;
 	/* *****（ユーティリティのインジェクト）********************/
 		@Inject
 		protected transient Logger log;		// ロガー

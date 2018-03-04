@@ -4,11 +4,17 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>仮登録完了</title>
+        <title>ERROR</title>
     </h:head>
     <h:body>
-		<ui:composition>
-		</ui:composition>
+		<ui:composition template="./../templates/template01.xhtml">
+            <ui:define name="title">
+                ERROR
+            </ui:define>
+            <ui:define name="content">
+                <h2>認証できませんでした。</h2>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

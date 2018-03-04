@@ -1,6 +1,5 @@
 package beans;
 
-import entity.AppGroup;
 import entity.Customer;
 import entity.TempCustomer;
 import java.io.Serializable;
@@ -61,7 +60,7 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		//同じトークンがなかった場合
 		if(temp == null) return "/customer/error.xhtml?faces-redirect=true";
 		//本登録して、仮登録データを削除
-		
+
 		Customer customer = new Customer(temp.getId(), temp.getPasswd(), temp.getName(), temp.getName(), null, null);
 		return "/customer/info3.xhtml?faces-redirect=true";
 	}
@@ -72,7 +71,7 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 	 */
 	private TempCustomer tokenChk(){
 		//仮ユーザーリストの取得
-		tempCustomerList = tempCustomerDb.getAll();
+		tempCustomerList = em.createNamedQuery(TempCustomer.All, TempCustomer.class).getResultList();
 		//トークンを復号
 		for(TempCustomer temp : tempCustomerList){
 			String decriptoToken = cripto.decript(temp.getId(), temp.getMail(), temp.getToken());

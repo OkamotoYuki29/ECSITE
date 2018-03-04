@@ -2,18 +2,16 @@
 package util;
 
 import java.util.List;
-import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Interceptors(Tracer.class)
 public abstract class SuperDb<T> {
 	protected Class<T> entityClass;
 
-	
+
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	public SuperDb(Class<T> entityClass) {
 		this.entityClass = entityClass;
 	}
@@ -58,5 +56,5 @@ public abstract class SuperDb<T> {
 		javax.persistence.Query q = em.createQuery(cq);
 		return ((Long) q.getSingleResult()).intValue();
 	}
-	
+
 }

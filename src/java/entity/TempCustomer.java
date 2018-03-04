@@ -5,6 +5,8 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -12,9 +14,17 @@ import javax.validation.constraints.Pattern;
  *
  * @author 岡本　侑貴
  */
+
+/** 名前付きクエリ */
+@NamedQueries ({
+	@NamedQuery(name=TempCustomer.All,	query="SELECT t FROM TempCustomer t")
+})
 @Entity
 @Table(name="FIT_TEMP_CUSTOMER")
 public class TempCustomer implements Serializable {
+	/** 名前付きクエリ */
+	public static final String All	= "All";
+
 	private static final long serialVersionUID = 1L;
 	/** ID */
 	@Id

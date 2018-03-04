@@ -4,19 +4,17 @@ import entity.AppKind;
 import entity.Product;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import util.Pagenation;
-import util.Tracer;
 
 
 @Stateless
 public class ProductManager {
 	@PersistenceContext
 	EntityManager	em;
-	
+
 	public  List<Product> getFromDb(int priceItem, AppKind kindItem, Long category, Pagenation productPage){
 		TypedQuery<Product> query = null;
 		if(kindItem==AppKind.NONE ){
@@ -49,7 +47,7 @@ public class ProductManager {
 		query.setMaxResults(productPage.maxResult());
 		return	query.getResultList();
 	}
-	
+
 	public void counterClear(AppKind kindItem, Long category, Pagenation productPage){
 		TypedQuery<Long> count_query = null;
 		if(kindItem==AppKind.NONE ){
