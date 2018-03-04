@@ -85,7 +85,6 @@ public class CustomerSuperBb implements Serializable{
 	/* *****（初期化）******************************************/
 		@PostConstruct
 		public void init(){
-			groupId = AppGroupId.TEMPORARY_USER;		//仮ユーザー
 			/* 現在CUSTOMERテーブルが空のためコメントアウト
 			customerList = customerDb.getAll();
 			*/

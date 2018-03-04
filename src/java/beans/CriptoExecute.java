@@ -31,17 +31,22 @@ public class CriptoExecute implements Serializable {
         --------------------------------------------------------------------------------*/
 		FileUtil.writeBytes(iv,  id);
         FileUtil.writeBytes(key, mail);
+		System.out.println("IV(スタートブロック用の初期値）="+new String(iv)+ "（"+iv.length + "byte）");
+        System.out.println("暗号解読キー＝" + new String(key) + "（16byte）");
+
 		 /*------------------------------------------------------------------------------
            暗号化の処理
         --------------------------------------------------------------------------------*/
         String source = token; // 暗号化する文字列
 		String result = "";    // 暗号化した結果の文字列
+		System.out.println("トークン＝" + token);
         try {                                                                              // Cryptoオブジェクトを生成する
             Crypto c = new Crypto(FileUtil.readBytes(id), FileUtil.readBytes(mail));	   // 解読キーとIVをファイルから読み込む
             result = c.encrypt(source);                                                    // 暗号化した文字列を得る
         } catch (Exception e) {
             e.printStackTrace();
         }
+		System.out.println("暗号＝" + result);  // 暗号文字列を表示する
 		return result;
 	}
 	/**
