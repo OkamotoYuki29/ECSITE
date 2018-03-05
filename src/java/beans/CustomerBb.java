@@ -21,7 +21,6 @@ import util.Tracer;
 
 @Named
 @ConversationScoped
-@Interceptors(Tracer.class)
 public class CustomerBb extends CustomerSuperBb implements Serializable{
 	@Inject
 	Conversation conv;
