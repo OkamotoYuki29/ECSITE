@@ -20,7 +20,7 @@ public class Customer implements Serializable {
 	@Id
 	private String id;
 	/** PW */
-	@Column(length = 16, nullable = false) @Pattern(regexp = "^\\w+$")
+	@Column(nullable = false) @Pattern(regexp = "^\\w+$")
 	private String passwd;
 	/** 氏名 */
 	@Column(nullable = false)

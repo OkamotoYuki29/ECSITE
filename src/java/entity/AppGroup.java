@@ -11,12 +11,12 @@ import javax.persistence.Table;
 @Table(name="FIT_APPGROUP")
 public class AppGroup implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@EmbeddedId
 	private GroupKey groupKey;
 	@OneToOne(mappedBy = "group")
 	private Customer customer;
-	
+
 /* ****** コンストラクタ *************/
 	public AppGroup() {
 	}
@@ -41,7 +41,7 @@ public class AppGroup implements Serializable {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-/* ****** その他 *************/	
+/* ****** その他 *************/
 	@Override
 	public int hashCode() {
 		int hash = 5;
@@ -68,8 +68,8 @@ public class AppGroup implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "AppGroup{" + "groupKey=" + groupKey + ", customer=" + customer + '}';
+		return "AppGroup{" + "groupKey=" + groupKey +  '}';
 	}
-	
-	
+
+
 }

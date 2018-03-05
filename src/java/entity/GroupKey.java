@@ -3,15 +3,17 @@ package entity;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 
 @Embeddable
 public class GroupKey implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+	@Enumerated(EnumType.STRING)
 	private AppGroupId groupId;
 	private String customerId;
-	
+
 /* ****** コンストラクタ *************/
 	public GroupKey() {
 	}
@@ -19,7 +21,7 @@ public class GroupKey implements Serializable {
 		this.groupId = groupId;
 		this.customerId = customerId;
 	}
-/* ****** ゲッター、セッター *************/	
+/* ****** ゲッター、セッター *************/
 	public AppGroupId getGroupId() {
 		return groupId;
 	}
@@ -61,5 +63,5 @@ public class GroupKey implements Serializable {
 	public String toString() {
 		return "GroupKey{" + "groupId=" + groupId + ", customerId=" + customerId + '}';
 	}
-	
+
 }
