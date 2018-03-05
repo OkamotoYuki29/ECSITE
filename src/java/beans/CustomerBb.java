@@ -102,6 +102,7 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		Customer cusotmer = new Customer(id, passwd, name, mail, group, list);
 		group.setCustomer(cusotmer);
 		customerDb.add(cusotmer);
+		tempCustomerDb.delete(temp);
 	}
 /** ****(ユーザー情報表示・変更)***************************************/
 /* ******（content-1）**************************************/
