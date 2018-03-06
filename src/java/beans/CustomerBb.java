@@ -68,7 +68,10 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		//Tokenチェック
 		TempCustomer temp = tokenChk();
 		//同じトークンがなかった場合
-		if(temp == null) return "/customer/error.xhtml?faces-redirect=true";
+		if(temp == null){
+			facesErrorMsg("認証できませんでした。再度登録をお願いします。");
+			return "/customer/error.xhtml?faces-redirect=true";
+		}
 		//本登録して、仮登録データを削除
 		customerRegist(temp);
 		return "/customer/info1-3.xhtml?faces-redirect=true";
@@ -112,7 +115,8 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 /* ******（info2_2）**************************************/
 	public String goto2_2(){
 		addDestination();
-		return null;
+		conv.end();
+		return "/customer/info2-2.xhtml?faces-redirect=true";
 	}
 	private void addDestination(){
 		TypedQuery<Customer> q = em.createNamedQuery(Customer.FIND, Customer.class);
@@ -122,7 +126,6 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		customer.getDestination().add(destination);
 		customerDb.update(customer);
 	}
-
 
 /** ****(ユーザー情報表示・変更)***************************************/
 /* ******（regist1-1）**************************************/

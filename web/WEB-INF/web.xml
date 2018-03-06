@@ -21,4 +21,49 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <display-name>ecsite</display-name>
+        <web-resource-collection>
+            <web-resource-name>ecsite</web-resource-name>
+            <description>japan fitness</description>
+            <url-pattern>/faces/login/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>ログイン認証後にリソースを利用できるロール</description>
+            <role-name>admin1</role-name>
+            <role-name>admin2</role-name>
+            <role-name>admin3</role-name>
+            <role-name>user</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description>HTTPS接続する場合はCONFIDENTIALに変更する</description>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>jdbc-realm</realm-name>
+        <form-login-config>
+            <form-login-page>/faces/login/login.xhtml</form-login-page>
+            <form-error-page>/faces/login/error/xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>管理者1</description>
+        <role-name>admin1</role-name>
+    </security-role>
+    <security-role>
+        <description>管理者2</description>
+        <role-name>admin2</role-name>
+    </security-role>
+    <security-role>
+        <description>管理者3</description>
+        <role-name>admin3</role-name>
+    </security-role>
+    <security-role>
+        <description>顧客</description>
+        <role-name>user</role-name>
+    </security-role>
 </web-app>

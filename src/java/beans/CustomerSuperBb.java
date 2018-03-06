@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -92,6 +94,23 @@ public class CustomerSuperBb implements Serializable{
 			*/
 		}
 	/* *****（getter setter）******************************************/
+	/* *****（メッセージを作成しキューに入れる）**************/
+		public void facesMessage(String s) {
+			FacesMessage msg = new FacesMessage(s);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	/* *****（エラーメッセージを作成しキューに入れる）**************/
+		public void facesErrorMsg(String s) {
+			FacesMessage msg = new FacesMessage(s);
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	/* *****（メッセージを作成しキューに入れる）*****************
+		FacesMessage.SEVERITY_FATAL		致命的エラー(4)
+		FacesMessage.SEVERITY_ERROR		エラー(3)
+		FacesMessage.SEVERITY_WARN		警告(2)
+		FacesMessage.SEVERITY_WARN		情報(1)
+	*************************************************************/
 		public String getId() {
 			return id;
 		}

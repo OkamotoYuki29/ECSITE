@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="FIT_APPGROUP")
+@Table(name="FIT_GROUP")
 public class AppGroup implements Serializable {
 	private static final long serialVersionUID = 1L;
 
