@@ -8,7 +8,11 @@
     </h:head>
     <h:body>
 		<ui:composition>
-			本登録完了
+			<h2>本登録完了</h2>
+			続けて宛先情報の登録をお願いいたします。<br/>
+			<h:form>
+				<h:commandButton action="#{customerBb.goto2_1()}" value="登録する"/>
+			</h:form>
 		</ui:composition>
     </h:body>
 </html>

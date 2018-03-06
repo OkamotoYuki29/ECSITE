@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
 	  xmlns:f="http://xmlns.jcp.org/jsf/core"
 	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
@@ -22,22 +21,18 @@
 					</h:panelGroup>
 					<h:message for="id" id="idmsg" styleClass="error"/>
 					<h:panelGroup>
-						<c:if test="#{customerBb.displayable}">
-							<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()"/>
-						</c:if>
+						<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()" rendered="#{customerBb.displayable}"/>
 					</h:panelGroup>
 					パスワード
 					<h:panelGroup>
-						<h:inputText value="#{customerBb.passwd}" rendered="#{customerBb.editable}" id="passwd" required="true" p:placeholder="半角英数8～16文字" >
+						<h:inputSecret value="#{customerBb.passwd}" rendered="#{customerBb.editable}" id="passwd" required="true" p:placeholder="半角英数8～16文字" >
 							<f:ajax event="blur" render="passwdmsg"/>
-						</h:inputText>
+						</h:inputSecret>>
 						<h:outputText value="#{customerBb.passwd}" rendered="#{!customerBb.editable}"/>
 					</h:panelGroup>
 					<h:message for="passwd" id="passwdmsg" styleClass="error"/>
 					<h:panelGroup>
-						<c:if test="#{customerBb.displayable}">
-							<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()"/>
-						</c:if>
+						<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()" rendered="#{customerBb.displayable}"/>
 					</h:panelGroup>
 					氏名
 					<h:panelGroup>
@@ -48,9 +43,7 @@
 					</h:panelGroup>
 					<h:message for="name" id="namemsg" styleClass="error"/>
 					<h:panelGroup>
-						<c:if test="#{customerBb.displayable}">
-							<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()"/>
-						</c:if>
+						<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()" rendered="#{customerBb.displayable}"/>
 					</h:panelGroup>
 					メールアドレス
 					<h:panelGroup>
@@ -61,17 +54,11 @@
 					</h:panelGroup>
 					<h:message for="mail" id="mailmsg" styleClass="error"/>
 					<h:panelGroup>
-						<c:if test="#{customerBb.displayable}">
-							<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()"/>
-						</c:if>
+						<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()" rendered="#{customerBb.displayable}"/>
 					</h:panelGroup>
 				</h:panelGrid>
-				<c:if test="#{customerBb.displayable}">
-					<h:commandButton action="#{customerBb.end_forDispEdit}"/>
-				</c:if>
-				<c:if test="#{!customerBb.displayable}">
-					<h:commandButton action="#{customerBb.goto2}" value="登録" />
-				</c:if>
+				<h:commandButton action="#{customerBb.end_forDispEdit}" rendered="#{customerBb.displayable}"/>
+				<h:commandButton action="#{customerBb.goto1_2}" value="登録" rendered="#{!customerBb.displayable}"/>
 			</h:form>
 		</ui:composition>
     </h:body>

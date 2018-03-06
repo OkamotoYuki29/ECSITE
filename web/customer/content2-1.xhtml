@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>宛先登録</title>
+    </h:head>
+    <h:body>
+		<ui:composition>
+			<h:form>
+				<h:panelGrid columns="4">
+					宛名
+					<h:panelGroup>
+						<h:inputText value="#{customerBb.addressee}" rendered="#{customerBb.editable}" id="addressee" required="true">
+							<f:ajax event="blur" render="addresseemsg"/>
+						</h:inputText>
+						<h:outputText value="#{customerBb.addressee}" rendered="#{!customerBb.editable}"/>
+					</h:panelGroup>
+					<h:message for="addressee" id="addresseemsg" styleClass="error"/>
+					<h:panelGroup>
+						<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()" rendered="#{customerBb.displayable}"/>
+					</h:panelGroup>
+					宛名かな
+					<h:panelGroup>
+						<h:inputText value="#{customerBb.addresseeaKana}" rendered="#{customerBb.editable}" id="addresseeaKana" required="true" p:placeholder="ひらがな" >
+							<f:ajax event="blur" render="addresseeaKanamsg"/>
+						</h:inputText>
+						<h:outputText value="#{customerBb.addresseeaKana}" rendered="#{!customerBb.editable}"/>
+					</h:panelGroup>
+					<h:message for="addresseeaKana" id="addresseeaKanamsg" styleClass="error"/>
+					<h:panelGroup>
+						<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()" rendered="#{customerBb.displayable}" />
+					</h:panelGroup>
+					郵便番号
+					<h:panelGroup>
+						<h:inputText value="#{customerBb.postal}" rendered="#{customerBb.editable}" id="postal" required="true" p:placeholder="半角数字7桁" >
+							<f:ajax event="blur" render="postalmsg"/>
+						</h:inputText>
+						<h:outputText value="#{customerBb.postal}" rendered="#{!customerBb.editable}"/>
+					</h:panelGroup>
+					<h:message for="postal" id="postalmsg" styleClass="error"/>
+					<h:panelGroup>
+						<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()" rendered="#{customerBb.displayable}"/>
+					</h:panelGroup>
+					住所
+					<h:panelGroup>
+						<h:inputTextarea value="#{customerBb.address}" rendered="#{customerBb.editable}" id="address" required="true" >
+							<f:ajax event="blur" render="addressmsg"/>
+						</h:inputTextarea> >
+						<h:outputText value="#{customerBb.address}" rendered="#{!customerBb.editable}"/>
+					</h:panelGroup>
+					<h:message for="address" id="addressmsg" styleClass="error"/>
+					<h:panelGroup>
+						<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()" rendered="#{customerBb.displayable}"/>
+					</h:panelGroup>
+					連絡先番号
+					<h:panelGroup>
+						<h:inputText value="#{customerBb.number}" rendered="#{customerBb.editable}" id="number" required="true" p:placeholder="半角数字10～11桁">
+							<f:ajax event="blur" render="numbermsg"/>
+						</h:inputText>
+						<h:outputText value="#{customerBb.number}" rendered="#{!customerBb.editable}"/>
+					</h:panelGroup>
+					<h:message for="number" id="numbermsg" styleClass="error"/>
+					<h:panelGroup>
+						<h:selectBooleanCheckbox value="#{customerBb.editable}" onclick="submit()" rendered="#{customerBb.displayable}"/>
+					</h:panelGroup>
+				</h:panelGrid>
+				<h:commandButton action="#{customerBb.goto2_2()}" value="登録"/>
+			</h:form>
+		</ui:composition>
+    </h:body>
+</html>
+

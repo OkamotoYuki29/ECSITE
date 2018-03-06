@@ -1,5 +1,6 @@
 package beans;
 
+import annotation.KanaPattern;
 import db.CustomerDb;
 import db.TempCustomerDb;
 import entity.AppGroupId;
@@ -44,6 +45,7 @@ public class CustomerSuperBb implements Serializable{
 		@Size(min = 1)
 		protected String addressee;
 		/* 宛名かな */
+		@KanaPattern
 		protected String addresseeaKana;
 		/* 郵便番号 */
 		@Digits(integer = 7, fraction = 0)

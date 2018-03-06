@@ -3,7 +3,6 @@ package beans;
 import entity.AppGroup;
 import entity.AppGroupId;
 import entity.Customer;
-import static entity.Customer_.destination;
 import entity.Destination;
 import entity.GroupKey;
 import entity.TempCustomer;
@@ -14,10 +13,8 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.interceptor.Interceptors;
 import util.SHA256Encoder;
 import util.Token;
-import util.Tracer;
 
 @Named
 @ConversationScoped
@@ -26,14 +23,14 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 	Conversation conv;
 
 /** *************(ユーザー登録)***************************************/
-/* ******（content-1）**************************************/
-	public String goto1_forRegist(){
+/* ******（infot1-1）**************************************/
+	public String goto1_1_forRegist(){
 		if(conv.isTransient()) conv.begin();
 		editable = true;
-		return "/customer/info1.xhtml?faces-redirect=true?";
+		return "/customer/info1-1.xhtml?faces-redirect=true?";
 	}
-/* ******（content-2）**************************************/
-	public String goto2(){
+/* ******（info1-2）**************************************/
+	public String goto1_2(){
 		/* トークンを生成 */
 		token = Token.generateToken();
 		/* トークンを暗号化 */
@@ -45,8 +42,8 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		tempCustomerDb.create(tempCustomer);
 		/* 本登録URL付mail送信 */
 		sendMail();
-
-		return "/customer/info2.xhtml?faces-redirect=true";
+		conv.end();
+		return "/customer/info1-2.xhtml?faces-redirect=true";
 	}
 	/**
 	 * mail送信
@@ -62,8 +59,9 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		SHA256Encoder encoder = new SHA256Encoder();
 		return encoder.encodePassword(passwd);
 	}
-/* ******（content-3）**************************************/
-	public String goto3(){
+/* ******（info1-3）**************************************/
+	public String goto1_3(){
+		if(conv.isTransient()) conv.begin();
 		System.out.println("token:" + token);
 		//Tokenチェック
 		TempCustomer temp = tokenChk();
@@ -71,7 +69,7 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		if(temp == null) return "/customer/error.xhtml?faces-redirect=true";
 		//本登録して、仮登録データを削除
 		customerRegist(temp);
-		return "/customer/info3.xhtml?faces-redirect=true";
+		return "/customer/info1-3.xhtml?faces-redirect=true";
 	}
 	/**
 	 * TempCustomerテーブルのトークンを一つずつそれぞれのキー(id,mail)で復号し、<br/>
@@ -104,13 +102,24 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 		customerDb.add(cusotmer);
 		tempCustomerDb.delete(temp);
 	}
+/* ******（info2_1）**************************************/
+	public String goto2_1(){
+		editable = true;
+		return "/customer/info2-1.xhtml?faces-redirect=true";
+	}
+/* ******（info2_2）**************************************/
+	public String goto2_2(){
+		return null;
+	}
+
+
 /** ****(ユーザー情報表示・変更)***************************************/
-/* ******（content-1）**************************************/
-	public String goto1_forDispEdit(){
+/* ******（regist1-1）**************************************/
+	public String goto1_1_forDispEdit(){
 		if(conv.isTransient()) conv.begin();
 		editable = false;
 		displayable = true;
-		return "/customer/info1.xhtml?faces-redirect=true";
+		return "/customer/info1-1.xhtml?faces-redirect=true";
 	}
 /* ******（end）**************************************/
 	public String end_forDispEdit(){
