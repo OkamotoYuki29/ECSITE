@@ -7,14 +7,25 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+/** 名前付きクエリ */
+@NamedQueries ({
+	@NamedQuery(name=Customer.FIND,	query="SELECT c FROM Customer c WHERE c.id=:valueOfId")
+})
+
 @Entity
 @Table(name="FIT_CUSTOMER")
 public class Customer implements Serializable {
+
+/** 名前付きクエリ */
+	public static final String FIND	= "FIND";
+
 	private static final long serialVersionUID = 1L;
 	/** ID */
 	@Id

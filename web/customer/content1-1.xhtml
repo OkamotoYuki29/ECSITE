@@ -27,7 +27,7 @@
 					<h:panelGroup>
 						<h:inputSecret value="#{customerBb.passwd}" rendered="#{customerBb.editable}" id="passwd" required="true" p:placeholder="半角英数8～16文字" >
 							<f:ajax event="blur" render="passwdmsg"/>
-						</h:inputSecret>>
+						</h:inputSecret>
 						<h:outputText value="#{customerBb.passwd}" rendered="#{!customerBb.editable}"/>
 					</h:panelGroup>
 					<h:message for="passwd" id="passwdmsg" styleClass="error"/>

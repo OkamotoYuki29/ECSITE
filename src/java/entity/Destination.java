@@ -36,15 +36,14 @@ public class Destination implements Serializable {
 /* ****** コンストラクタ *************/
 	public Destination() {
 	}
-	public Destination(Long id, String addressee, Integer postal, String address, String number, Customer customer) {
-		this.id = id;
+	public Destination(String addressee, Integer postal, String address, String number, Customer customer) {
 		this.addressee = addressee;
 		this.postal = postal;
 		this.address = address;
 		this.number = number;
 		this.customer = customer;
 	}
-/* ****** ゲッター、セッター *************/	
+/* ****** ゲッター、セッター *************/
 	public Long getId() {
 		return id;
 	}
@@ -81,7 +80,7 @@ public class Destination implements Serializable {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-/* ****** その他 *************/	
+/* ****** その他 *************/
 	@Override
 	public int hashCode() {
 		int hash = 7;
@@ -106,6 +105,6 @@ public class Destination implements Serializable {
 	public String toString() {
 		return "Destination{" + "id=" + id + ", addressee=" + addressee + ", postal=" + postal + ", address=" + address + ", number=" + number + ", customer=" + customer + '}';
 	}
-	
-	
+
+
 }

@@ -3,6 +3,7 @@ package beans;
 import entity.AppGroup;
 import entity.AppGroupId;
 import entity.Customer;
+import static entity.Customer_.destination;
 import entity.Destination;
 import entity.GroupKey;
 import entity.TempCustomer;
@@ -13,6 +14,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.TypedQuery;
 import util.SHA256Encoder;
 import util.Token;
 
@@ -109,7 +111,16 @@ public class CustomerBb extends CustomerSuperBb implements Serializable{
 	}
 /* ******（info2_2）**************************************/
 	public String goto2_2(){
+		addDestination();
 		return null;
+	}
+	private void addDestination(){
+		TypedQuery<Customer> q = em.createNamedQuery(Customer.FIND, Customer.class);
+		q.setParameter("valueOfId", id);
+		Customer customer = q.getSingleResult();
+		Destination destination = new Destination(addressee, postal, address, number, customer);
+		customer.getDestination().add(destination);
+		customerDb.update(customer);
 	}
 
 

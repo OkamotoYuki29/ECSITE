@@ -50,7 +50,7 @@
 					<h:panelGroup>
 						<h:inputTextarea value="#{customerBb.address}" rendered="#{customerBb.editable}" id="address" required="true" >
 							<f:ajax event="blur" render="addressmsg"/>
-						</h:inputTextarea> >
+						</h:inputTextarea>
 						<h:outputText value="#{customerBb.address}" rendered="#{!customerBb.editable}"/>
 					</h:panelGroup>
 					<h:message for="address" id="addressmsg" styleClass="error"/>
